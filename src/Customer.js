@@ -12,7 +12,6 @@ class Costumer {
   }
 
   returnPointsEarned() {
-    this.
   }
 }
 
