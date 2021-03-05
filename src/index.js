@@ -1,11 +1,38 @@
-// This is the JavaScript entry file - your code begins here
-// Do not delete or rename this file ********
-
-// An example of how you tell webpack to use a CSS (SCSS) file
 import './css/base.scss';
-
-// An example of how you tell webpack to use an image 
-//(also need to link to it in the index.html)
 import './images/turing-logo.png'
+import Hotel from './Hotel'
 
-// console.log('This is the JavaScript entry file - your code begins here.');
+
+let overlook;
+
+
+
+
+
+const getHotelData = () => {
+  const rooms = fetch('http://localhost:3001/api/v1/rooms')
+  .then(response => response.json())
+  .then(data => data.rooms)
+  .catch(err => console.log(err));
+  
+  const bookings = fetch('http://localhost:3001/api/v1/bookings')
+  .then(response => response.json())
+  .then(data => data.bookings)
+  .catch(err => console.log(err));
+  
+  const customers = fetch('http://localhost:3001/api/v1/customers')
+  .then(response => response.json())
+  .then(data => data.customers)
+  .catch(err => console.log(err))
+  
+  const data = Promise.all([rooms, bookings, customers]) 
+  .then(values => {
+    overlook = new Hotel('Overlook', values[0], values[1], values[2]);
+  })
+}
+
+
+window.onload = getHotelData();
+setTimeout(() => {
+  console.log(overlook)
+},1000)

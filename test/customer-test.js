@@ -2,10 +2,12 @@ import chai from 'chai';
 const expect = chai.expect;
 import Customer from '../src/Customer';
 import data from './test-data';
+import Hotel from '../src/Hotel';
 
 
 describe('Customer', () => {
-  const customer = new Customer(6, 'Fleta Schuppe')
+  const customer = new Customer(6, 'Fleta Schuppe');
+  const overlook = new Hotel('Overlook', data.rooms, data.bookings, data.customers);
 
   it('Should instantiate a new Customer', () => {
     expect(customer).to.be.an.instanceOf(Customer);
@@ -41,14 +43,14 @@ describe('Customer', () => {
         roomServiceCharges: []
       }
     ]
-    expect(customer.returnBookingHistory(data.bookings)).to.be.an('array');
-    expect(customer.returnBookingHistory(data.bookings))
-      .to.deep.equal(roomsBooked)
+    expect(customer.returnBookingHistory(overlook)).to.be.an('array');
+    expect(customer.returnBookingHistory(overlook))
+      .to.deep.equal(roomsBooked);
   })
   
   it('Should let you know if you have not booked rooms', () => {
-    let customer = new Customer(22, "Steven Mancine");
-    expect(customer.returnBookingHistory(data.bookings))
-      .to.deep.equal('You have not booked any rooms yet.')
+    const customer = new Customer(22, "Steven Mancine");
+    expect(customer.returnBookingHistory(overlook))
+      .to.deep.equal([]);
   })
 });

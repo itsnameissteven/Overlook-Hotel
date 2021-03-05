@@ -1,17 +1,10 @@
-class Costumer {
+import Human from './Human'
+
+class Costumer extends Human{
   constructor(id, name) {
+    super()
     this.id = id;
     this.name = name
-  }
-
-  returnBookingHistory(bookings) {
-    if (!bookings.some(room => room.userID === this.id)) {
-      return 'You have not booked any rooms yet.';
-    }
-    return bookings.filter(room => room.userID === this.id);
-  }
-
-  returnPointsEarned() {
   }
 }
 

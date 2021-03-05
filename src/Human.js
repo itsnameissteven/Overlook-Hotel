@@ -20,4 +20,4 @@ class Human {
   }
 }
 
-export default Human
+export default Human;
