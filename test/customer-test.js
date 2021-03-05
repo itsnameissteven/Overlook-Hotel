@@ -30,7 +30,7 @@ describe('Customer', () => {
         id: '5fwrgu4i7k55hl6td',
         userID: 6,
         date: '2020/01/31',
-        roomNumber: 20,
+        roomNumber: 18,
         roomServiceCharges: []
       },
       {
@@ -42,11 +42,13 @@ describe('Customer', () => {
       }
     ]
     expect(customer.returnBookingHistory(data.bookings)).to.be.an('array');
-    expect(customer.returnBookingHistory(data.bookings)).to.deep.equal(roomsBooked)
+    expect(customer.returnBookingHistory(data.bookings))
+      .to.deep.equal(roomsBooked)
   })
   
   it('Should let you know if you have not booked rooms', () => {
     let customer = new Customer(22, "Steven Mancine");
-    expect(customer.returnBookingHistory(data.bookings)).to.deep.equal('You have not booked any rooms yet.')
+    expect(customer.returnBookingHistory(data.bookings))
+      .to.deep.equal('You have not booked any rooms yet.')
   })
 });

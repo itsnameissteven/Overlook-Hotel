@@ -4,7 +4,8 @@ import data from './test-data';
 import Hotel from '../src/Hotel';
 
 describe('Hotel', () => {
-  const overlook = new Hotel("Overlook", data.rooms, data.bookings, data.customers)
+  const overlook = new Hotel("Overlook", data.rooms, 
+    data.bookings, data.customers);
 
   it('Should be an instance of Hotel', () => {
     expect(Hotel).to.be.a('function');
@@ -16,5 +17,5 @@ describe('Hotel', () => {
     expect(overlook.rooms).to.deep.equal(data.rooms);
     expect(overlook.bookings).to.deep.equal(data.bookings);
     expect(overlook.customers).to.deep.equal(data.customers);
-  })
+  });
 })
