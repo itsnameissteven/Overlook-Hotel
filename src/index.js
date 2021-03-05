@@ -52,12 +52,12 @@ const displayPointsEarned = (customer) => {
 //   }, 1000)
 // }
 
-
+data.returnAvailableRooms("1/30/2021")
 // document.getElementById('loginBtn').addEventListener('click', login)
 
 window.onload = () => {
-  createHotel()
+  createHotel();
 }
-// setTimeout(() => {
-//   console.log(hotel)
-// }, 200)
+setTimeout(() => {
+  console.log(hotel)
+}, 200)
