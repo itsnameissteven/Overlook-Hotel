@@ -5,64 +5,44 @@ import Customer from './Customer';
 import data from './data';
 
 
-let overlook;
-let user;
-
-
+let hotel;
+let customer;
 
 const createHotel = () => {
-  console.log(data.getAllHotelData())
   Promise.all(data.getAllHotelData())
-    .then(values => overlook = new Hotel("overLook", values[0], values[1], values[2]))
+    .then(values => hotel = new Hotel("overLook", values[0], values[1], values[2]))
+    .then(createUser)
+};
+
+const createUser = () => {
+  Promise.resolve(data.getUserData(50))
+    .then(value => {
+      customer = new Customer(value)
+      console.log(customer.returnBookingHistory(hotel))
+    })
+}
+const displayRooms = (customer) => {
+  hotel.rooms()
+  customer.returnBookingHistory(hotel)
 }
 
-// const getHotelData = () => {
-//   const rooms = fetch('http://localhost:3001/api/v1/rooms')
-//   .then(response => response.json())
-//   .then(data => data.rooms)
-//   .catch(err => console.log(err));
-
-//   const bookings = fetch('http://localhost:3001/api/v1/bookings')
-//   .then(response => response.json())
-//   .then(data => data.bookings)
-//   .catch(err => console.log(err));
-  
-//   const customers = fetch('http://localhost:3001/api/v1/customers')
-//   .then(response => response.json())
-//   .then(data => data.customers)
-//   .catch(err => console.log(err))
-  
-//   const data = Promise.all([rooms, bookings, customers]) 
-//   .then(values => {
-//     overlook = new Hotel('Overlook', values[0], values[1], values[2]);
-//   })
+// const login = (e) => {
+//   e.preventDefault();
+//   const userName = document.getElementById('userNameInput').value;
+//   const password = document.getElementById('passwordInput').value;
+//   const url = `http://localhost:3001/api/v1/customers/${userName.replace('overlook', '')}`
+//   getUserData(url)
+//   setTimeout(() => {
+//     console.log(user)
+//   }, 1000)
 // }
 
-const getUserData = (customer) => {
-  fetch(customer)
-    .then(response => response.json())
-    .then(data => {
-      user = new Customer(data)
-      console.log(user)
-    })
-    .catch(err => console.log(err))
+
+// document.getElementById('loginBtn').addEventListener('click', login)
+
+window.onload = () => {
+  createHotel()
 }
-
-const login = (e) => {
-  e.preventDefault();
-  const userName = document.getElementById('userNameInput').value;
-  const password = document.getElementById('passwordInput').value;
-  const url = `http://localhost:3001/api/v1/customers/${userName.replace('overlook', '')}`
-  getUserData(url)
-  setTimeout(() => {
-    console.log(user)
-  }, 1000)
-}
-
-
-document.getElementById('loginBtn').addEventListener('click', login)
-// console.log(data.getHotelData())
-window.onload = createHotel();
 setTimeout(() => {
-  console.log(overlook)
-},200)
+  console.log(hotel)
+}, 200)

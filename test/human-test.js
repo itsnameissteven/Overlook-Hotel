@@ -30,6 +30,32 @@ describe('Human behaviour', () => {
       roomServiceCharges: []
     }
   ]
+  const roomsBooked = [
+    {
+      number: 13,
+      roomType: 'single room',
+      bidet: false,
+      bedSize: 'queen',
+      numBeds: 2,
+      costPerNight: 423.92
+    },
+    {
+      number: 18,
+      roomType: 'junior suite',
+      bidet: false,
+      bedSize: 'king',
+      numBeds: 2,
+      costPerNight: 496.41
+    },
+    {
+      number: 8,
+      roomType: 'junior suite',
+      bidet: false,
+      bedSize: 'king',
+      numBeds: 1,
+      costPerNight: 261.26
+    }
+  ]
 
   it('Should instantiate a new Human', () => {
     expect(Human).to.be.a('function');
@@ -45,8 +71,17 @@ describe('Human behaviour', () => {
       .to.deep.equal([])
   });
 
+  it('Should return a list of hotel rooms data', () => {
+    expect(human.findSpecificRooms(overlook, 6)).to.deep.equal(roomsBooked)
+  })
+
   it('Should return the amount of money spent at the hotel', () => {
     expect(human.returnTotalBookingCost(overlook, 6)).to.deep.equal(1181.59)
     expect(human.returnTotalBookingCost(overlook, 22)).to.deep.equal(0)
   });
+
+  it('Should be able to see how many points are earned', () => {
+    expect(human.returnPointsEarned(overlook, 6)).to.deep.equal(118);
+    expect(human.returnPointsEarned(overlook, 22)).to.deep.equal(0);
+  })
 })
