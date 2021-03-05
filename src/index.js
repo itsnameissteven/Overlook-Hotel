@@ -17,13 +17,20 @@ const createHotel = () => {
 const createUser = () => {
   Promise.resolve(data.getUserData(50))
     .then(value => {
-      customer = new Customer(value)
-      console.log(customer.returnBookingHistory(hotel))
+      customer = new Customer(value);
+      displayRooms(customer);
     })
 }
 const displayRooms = (customer) => {
-  hotel.rooms()
-  customer.returnBookingHistory(hotel)
+  const bookedRooms = document.getElementById('bookedRooms')
+  customer.findSpecificRooms(hotel).forEach(room => {
+    // const booking = document.createElement('p');
+    // booking.className = 'booked-room';
+    // booking.innerText = JSON.stringify(room);
+    // bookedRooms.append(booking);
+    bookedRooms.innerHTML += 
+      `<p class="booked-room">${JSON.stringify(room)}</p>`
+  })
 }
 
 // const login = (e) => {
