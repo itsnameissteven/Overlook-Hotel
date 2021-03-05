@@ -1,10 +1,10 @@
 import Human from './Human'
 
 class Costumer extends Human{
-  constructor(id, name) {
+  constructor(customer) {
     super()
-    this.id = id;
-    this.name = name
+    this.id = customer.id;
+    this.name = customer.name
   }
 }
 

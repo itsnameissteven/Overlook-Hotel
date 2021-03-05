@@ -6,7 +6,7 @@ import Hotel from '../src/Hotel';
 
 
 describe('Customer', () => {
-  const customer = new Customer(6, 'Fleta Schuppe');
+  const customer = new Customer({id:6, name:'Fleta Schuppe'});
   const overlook = new Hotel('Overlook', data.rooms, data.bookings, data.customers);
 
   it('Should instantiate a new Customer', () => {
@@ -49,7 +49,7 @@ describe('Customer', () => {
   })
   
   it('Should let you know if you have not booked rooms', () => {
-    const customer = new Customer(22, "Steven Mancine");
+    const customer = new Customer({id:22, name:"Steven Mancine"});
     expect(customer.returnBookingHistory(overlook))
       .to.deep.equal([]);
   })
