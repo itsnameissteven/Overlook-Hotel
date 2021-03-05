@@ -5,7 +5,7 @@ class Costumer extends Human {
     super()
     this.id = customer.id;
     this.name = customer.name;
-  }
+  }    
 }
 
 export default Costumer;

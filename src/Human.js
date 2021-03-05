@@ -26,7 +26,7 @@ class Human {
   returnPointsEarned(hotel, id = this.id) {
     const amountPaid = this.returnTotalBookingCost(hotel, id);
     return Math.floor(amountPaid / 10);
-  }
+  }  
 }
 
 export default Human;

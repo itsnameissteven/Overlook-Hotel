@@ -11,26 +11,34 @@ let customer;
 const createHotel = () => {
   Promise.all(data.getAllHotelData())
     .then(values => hotel = new Hotel("overLook", values[0], values[1], values[2]))
-    .then(createUser)
+    .then(createUser);
 };
 
 const createUser = () => {
   Promise.resolve(data.getUserData(50))
     .then(value => {
       customer = new Customer(value);
-      displayRooms(customer);
+      // console.log(customer.returnPointsEarned(hotel))
+      displayRooms(customer)
+      displayPointsEarned(customer)
     })
-}
+};
+
 const displayRooms = (customer) => {
   const bookedRooms = document.getElementById('bookedRooms')
-  customer.findSpecificRooms(hotel).forEach(room => {
-    // const booking = document.createElement('p');
-    // booking.className = 'booked-room';
-    // booking.innerText = JSON.stringify(room);
-    // bookedRooms.append(booking);
+  customer.returnBookingHistory(hotel).forEach(room => {
     bookedRooms.innerHTML += 
-      `<p class="booked-room">${JSON.stringify(room)}</p>`
-  })
+      `<p class="booked-room">${JSON.stringify(room)}</p>`;
+  });
+};
+
+const displayPointsEarned = (customer) => {
+  
+  const pointsEarned = document.getElementById('pointsEarned')
+  pointsEarned.innerText = 
+    `You've earned ${customer.returnPointsEarned(hotel)}
+    Earn 1 point for every 10$ spent
+    total spent ${customer.returnTotalBookingCost(hotel)}`
 }
 
 // const login = (e) => {
@@ -50,6 +58,6 @@ const displayRooms = (customer) => {
 window.onload = () => {
   createHotel()
 }
-setTimeout(() => {
-  console.log(hotel)
-}, 200)
+// setTimeout(() => {
+//   console.log(hotel)
+// }, 200)
