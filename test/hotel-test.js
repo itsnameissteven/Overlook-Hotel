@@ -85,10 +85,18 @@ describe('Hotel', () => {
     expect(kingBedSearch).to.deep.equal(kingBeds);
   })
 
+  it('Should return all rooms if they have enough beds', () => {
+    const roomsByBedNumber = overlook.rooms.filter(room => room.numBeds === 2);
+    const bedNumSearch = overlook.filterRoomsBySearchCriteria(overlook.rooms, '2', 'numBeds');
+    expect(bedNumSearch).to.deep.equal(roomsByBedNumber);
+  })
+
   it('Should return all rooms if no search input entered', () => {
     expect(overlook.filterRoomsBySearchCriteria(overlook.rooms, '', 'roomType'))
       .to.deep.equal(overlook.rooms)
     expect(overlook.filterRoomsBySearchCriteria(overlook.rooms, '', 'bedSize'))
+      .to.deep.equal(overlook.rooms)
+    expect(overlook.filterRoomsBySearchCriteria(overlook.rooms, '', 'numBeds'))
       .to.deep.equal(overlook.rooms)
   });
  

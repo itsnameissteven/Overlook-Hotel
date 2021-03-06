@@ -16,12 +16,12 @@ class Hotel {
 
   filterRoomsBySearchCriteria(availableRooms, searchInput, type) {
     if(!searchInput) {
-      return availableRooms
+      return availableRooms;
     }
     const searchParameters = searchInput.split(' ');
     const results = searchParameters.reduce((foundRooms, keyword) => {
       availableRooms.forEach(room => {
-        if(room[type] === keyword && !foundRooms.includes(room)) {
+        if(room[type].toString() === keyword && !foundRooms.includes(room)) {
           foundRooms.push(room);
         }
       });
