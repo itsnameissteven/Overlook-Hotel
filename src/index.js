@@ -4,6 +4,8 @@ import Hotel from './Hotel';
 import Customer from './Customer';
 import data from './data';
 
+import './images/overlook-hotel.jpg'
+
 
 let hotel;
 let customer;
@@ -18,7 +20,6 @@ const createUser = () => {
   Promise.resolve(data.getUserData(50))
     .then(value => {
       customer = new Customer(value);
-      // console.log(customer.returnPointsEarned(hotel))
       displayRooms(customer)
       displayPointsEarned(customer)
     })
