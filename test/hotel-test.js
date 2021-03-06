@@ -23,5 +23,39 @@ describe('Hotel', () => {
     expect(overlook.checkAvailableRooms("2022/07/78")).to.deep.equal(overlook.rooms)
     overlook.rooms.splice(5, 1)
     expect(overlook.checkAvailableRooms("2020/02/15")).to.deep.equal(overlook.rooms)
+  });
+  
+  it('Should let you know if no date was selected', () => {
+    expect(overlook.checkAvailableRooms()).to.deep.equal(true)
+  });
+
+  it('Should return rooms by type', () => {
+    const suites = [
+      {
+        number: 2,
+        roomType: 'suite',
+        bidet: false,
+        bedSize: 'full',
+        numBeds: 2,
+        costPerNight: 477.38
+      },
+      {
+        number: 10,
+        roomType: 'suite',
+        bidet: false,
+        bedSize: 'twin',
+        numBeds: 1,
+        costPerNight: 497.64
+      }
+    ];
+
+    expect(overlook.filterRoomsBySearchCriteria(overlook.rooms, 'suite', 'roomType'))
+      .to.deep.equal(suites);
+  });
+
+  it('Should return all rooms if no search input entered', () => {
+    expect(overlook.filterRoomsBySearchCriteria(overlook.rooms, '', 'roomType'))
+      .to.deep.equal(overlook.rooms)
   })
+  console.log(overlook.rooms)
 })
