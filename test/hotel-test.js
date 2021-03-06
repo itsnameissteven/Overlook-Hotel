@@ -29,7 +29,7 @@ describe('Hotel', () => {
     expect(overlook.checkAvailableRooms()).to.deep.equal(true)
   });
 
-  it('Should return rooms by type', () => {
+  it('Should return rooms by type if matched', () => {
     const suites = [
       {
         number: 2,
@@ -53,9 +53,44 @@ describe('Hotel', () => {
       .to.deep.equal(suites);
   });
 
+  it('Should return rooms with matching bed size', () => {
+    const kingBeds = [
+      {
+        number: 3,
+        roomType: 'single room',
+        bidet: false,
+        bedSize: 'king',
+        numBeds: 1,
+        costPerNight: 491.14
+      },
+      {
+        number: 8,
+        roomType: 'junior suite',
+        bidet: false,
+        bedSize: 'king',
+        numBeds: 1,
+        costPerNight: 261.26
+      },
+      {
+        number: 18,
+        roomType: 'junior suite',
+        bidet: false,
+        bedSize: 'king',
+        numBeds: 2,
+        costPerNight: 496.41
+      }
+    ]
+    const kingBedSearch = overlook.filterRoomsBySearchCriteria(overlook.rooms, 'king', 'bedSize');
+
+    expect(kingBedSearch).to.deep.equal(kingBeds);
+  })
+
   it('Should return all rooms if no search input entered', () => {
     expect(overlook.filterRoomsBySearchCriteria(overlook.rooms, '', 'roomType'))
       .to.deep.equal(overlook.rooms)
-  })
-  console.log(overlook.rooms)
+    expect(overlook.filterRoomsBySearchCriteria(overlook.rooms, '', 'bedSize'))
+      .to.deep.equal(overlook.rooms)
+  });
+ 
+  
 })
