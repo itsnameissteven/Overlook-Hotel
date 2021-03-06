@@ -4,6 +4,8 @@ import Hotel from './Hotel';
 import Customer from './Customer';
 import data from './data';
 
+import './images/overlook-hotel'
+
 
 let hotel;
 let customer;
