@@ -5,7 +5,7 @@ class Human {
     }
     return hotel.bookings.filter(room => room.userID === id);
   }
-
+  
   findSpecificRooms(hotel, id = this.id) {
     const roomsBooked = this.returnBookingHistory(hotel, id);
     const specificRooms = roomsBooked.map(room => {
