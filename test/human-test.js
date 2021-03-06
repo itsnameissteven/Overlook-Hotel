@@ -83,5 +83,5 @@ describe('Human behaviour', () => {
   it('Should be able to see how many points are earned', () => {
     expect(human.returnPointsEarned(overlook, 6)).to.deep.equal(118);
     expect(human.returnPointsEarned(overlook, 22)).to.deep.equal(0);
-  })
+  }) 
 })

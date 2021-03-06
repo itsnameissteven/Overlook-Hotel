@@ -26,7 +26,7 @@ const createUser = () => {
 
 const displayRooms = (customer) => {
   const bookedRooms = document.getElementById('bookedRooms')
-  customer.returnBookingHistory(hotel).forEach(room => {
+  customer.findSpecificRooms(hotel).forEach(room => {
     bookedRooms.innerHTML += 
       `<p class="booked-room">${JSON.stringify(room)}</p>`;
   });
@@ -37,7 +37,7 @@ const displayPointsEarned = (customer) => {
   const pointsEarned = document.getElementById('pointsEarned')
   pointsEarned.innerText = 
     `You've earned ${customer.returnPointsEarned(hotel)}
-    Earn 1 point for every 10$ spent
+    Earn 1 point for every $10 spent
     total spent ${customer.returnTotalBookingCost(hotel)}`
 }
 
@@ -52,12 +52,13 @@ const displayPointsEarned = (customer) => {
 //   }, 1000)
 // }
 
-data.returnAvailableRooms("1/30/2021")
 // document.getElementById('loginBtn').addEventListener('click', login)
 
 window.onload = () => {
   createHotel();
 }
-setTimeout(() => {
-  console.log(hotel)
-}, 200)
+
+// setTimeout(() => {
+//   console.log(hotel)
+//   console.log(hotel.checkAvailableRooms("2020/01/31"))
+// }, 200)

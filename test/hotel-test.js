@@ -18,4 +18,10 @@ describe('Hotel', () => {
     expect(overlook.bookings).to.deep.equal(data.bookings);
     expect(overlook.customers).to.deep.equal(data.customers);
   });
+
+  it('Should return rooms available by selected day', () => {
+    expect(overlook.checkAvailableRooms("2022/07/78")).to.deep.equal(overlook.rooms)
+    overlook.rooms.splice(5, 1)
+    expect(overlook.checkAvailableRooms("2020/02/15")).to.deep.equal(overlook.rooms)
+  })
 })

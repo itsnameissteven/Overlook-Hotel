@@ -5,12 +5,10 @@ class Hotel {
     this.bookings = bookings;
     this.customers = customers;
   }
-  returnAvailableRooms(checkIn, checkOut) {
-      //find the value of the checkCheckin date
-      //find the value of the CheckOut date
-      //Check the currentBookings
-      //if a room is available from the day of checkin to the day of checkout
-      //return an array of available rooms
+  checkAvailableRooms(checkIn) {
+    const unavailable = this.bookings.filter(room => room.date === checkIn)
+      .map(room => room.roomNumber);
+    return this.rooms.filter(room => !unavailable.includes(room.number))
   }
   
 }
