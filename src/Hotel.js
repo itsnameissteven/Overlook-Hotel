@@ -6,7 +6,7 @@ class Hotel {
     this.customers = customers;
   }
   checkAvailableRooms(checkIn) {
-    if(!checkIn) {
+    if (!checkIn) {
       return true
     }
     const unavailable = this.bookings.filter(room => room.date === checkIn)
@@ -15,24 +15,24 @@ class Hotel {
   }
 
   filterRoomsBySearchCriteria(availableRooms, searchInput, type) {
-    if(!searchInput) {
+    if (!searchInput) {
       return availableRooms;
     }
     const searchParameters = searchInput.split('-');
     const results = searchParameters.reduce((foundRooms, keyword) => {
       availableRooms.forEach(room => {
-        if(room[type].toString() === keyword && !foundRooms.includes(room)) {
+        if (room[type].toString() === keyword && !foundRooms.includes(room)) {
           foundRooms.push(room);
         }
       });
-     return foundRooms;
+      return foundRooms;
     }, []);
     return results;
   }
 
   returnAllFilteredResults(date, typeOfRoom, numberOfBeds, sizeOfBed) {
     const availableRooms = this.checkAvailableRooms(date)
-    if(availableRooms === true) {
+    if (availableRooms === true) {
       return true
     }
     const byType = this.filterRoomsBySearchCriteria(availableRooms, typeOfRoom, 'roomType');

@@ -63,7 +63,8 @@ describe('Human behaviour', () => {
   });
 
   it('Should return all rooms booked for past and present based on id', () => {
-    expect(human.returnBookingHistory(overlook, 6)).to.deep.equal(customersBookings);
+    expect(human.returnBookingHistory(overlook, 6))
+      .to.deep.equal(customersBookings);
   });
 
   it('Should let you know if no rooms have been booked', () => {

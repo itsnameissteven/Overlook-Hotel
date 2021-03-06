@@ -16,7 +16,7 @@ const data = {
       .catch(err => alert(err))
   },
   handleErrors(response) {
-    if(!response.ok) {
+    if (!response.ok) {
       throw Error(response.statusText);
     }
     return response.json()

@@ -20,9 +20,11 @@ describe('Hotel', () => {
   });
 
   it('Should return rooms available by selected day', () => {
-    expect(overlook.checkAvailableRooms("2022/07/78")).to.deep.equal(overlook.rooms)
-    overlook.rooms.splice(5, 1)
-    expect(overlook.checkAvailableRooms("2020/02/15")).to.deep.equal(overlook.rooms)
+    expect(overlook.checkAvailableRooms("2022/07/78"))
+      .to.deep.equal(overlook.rooms);
+    overlook.rooms.splice(5, 1);
+    expect(overlook.checkAvailableRooms("2020/02/15"))
+      .to.deep.equal(overlook.rooms);
   });
   
   it('Should let you know if no date was selected', () => {
@@ -48,9 +50,8 @@ describe('Hotel', () => {
         costPerNight: 497.64
       }
     ];
-
-    expect(overlook.filterRoomsBySearchCriteria(overlook.rooms, 'suite', 'roomType'))
-      .to.deep.equal(suites);
+    const suitesSearch = overlook.filterRoomsBySearchCriteria(overlook.rooms, 'suite', 'roomType')
+    expect(suitesSearch).to.deep.equal(suites);
   });
 
   it('Should return rooms with matching bed size', () => {
@@ -113,11 +114,11 @@ describe('Hotel', () => {
         numBeds: 2,
         costPerNight: 477.38
       }
-    ])
+    ]);
   })
 
   it('Should not work if no date is selected', () => {
-    const search = overlook.returnAllFilteredResults('', "junior suite-suite", "2", "full")
-    expect(search).to.deep.equal(true)
+    const search = overlook.returnAllFilteredResults('', "junior suite-suite", "2", "full");
+    expect(search).to.deep.equal(true);
   })
 })
