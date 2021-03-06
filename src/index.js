@@ -20,7 +20,6 @@ const createUser = () => {
   Promise.resolve(data.getUserData(50))
     .then(value => {
       customer = new Customer(value);
-      // console.log(customer.returnPointsEarned(hotel))
       displayRooms(customer)
       displayPointsEarned(customer)
     })

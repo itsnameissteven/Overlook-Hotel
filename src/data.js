@@ -15,28 +15,11 @@ const data = {
       .then(data => data)
       .catch(err => alert(err))
   },
-
   handleErrors(response) {
     if(!response.ok) {
       throw Error(response.statusText);
     }
     return response.json()
-  },
-
-  returnAvailableRooms(checkIn) {
-    this.getData('bookings')
-      .then(data => {
-        const unavailable = data.filter(room => room.date == checkIn).map(room => room.roomNumber);
-        
-      })
-    console.log(new Date(checkIn))
-    // console.log(new Date(checkOut))
-
-      //find the value of the checkCheckin date
-      //find the value of the CheckOut date
-      //Check the currentBookings
-      //if a room is available from the day of checkin to the day of checkout
-      //return an array of available rooms
   }
 }
 
