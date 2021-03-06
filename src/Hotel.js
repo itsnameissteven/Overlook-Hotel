@@ -18,7 +18,7 @@ class Hotel {
     if(!searchInput) {
       return availableRooms;
     }
-    const searchParameters = searchInput.split(' ');
+    const searchParameters = searchInput.split('-');
     const results = searchParameters.reduce((foundRooms, keyword) => {
       availableRooms.forEach(room => {
         if(room[type].toString() === keyword && !foundRooms.includes(room)) {
@@ -29,6 +29,19 @@ class Hotel {
     }, []);
     return results;
   }
+
+  returnAllFilteredResults(date, typeOfRoom, numberOfBeds, sizeOfBed) {
+    const availableRooms = this.checkAvailableRooms(date)
+    if(availableRooms === true) {
+      return true
+    }
+    const byType = this.filterRoomsBySearchCriteria(availableRooms, typeOfRoom, 'roomType');
+    const byNumberOfBeds = this.filterRoomsBySearchCriteria(byType, numberOfBeds, 'numBeds');
+    const byBedSize = this.filterRoomsBySearchCriteria(byNumberOfBeds, sizeOfBed, 'bedSize');
+    const finalResult = byBedSize;
+    return finalResult;
+  }
+
 }
 
 export default Hotel;

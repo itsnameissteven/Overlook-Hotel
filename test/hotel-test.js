@@ -100,5 +100,24 @@ describe('Hotel', () => {
       .to.deep.equal(overlook.rooms)
   });
  
-  
+  it('Should return filtered search results for all categories', () => {
+    overlook.bookings = data.bookingsForSearch;
+    const search = overlook.returnAllFilteredResults('2020/01/31', "junior suite-suite", "2", "full")
+
+    expect(search).to.deep.equal([
+      {
+        number: 2,
+        roomType: 'suite',
+        bidet: false,
+        bedSize: 'full',
+        numBeds: 2,
+        costPerNight: 477.38
+      }
+    ])
+  })
+
+  it('Should not work if no date is selected', () => {
+    const search = overlook.returnAllFilteredResults('', "junior suite-suite", "2", "full")
+    expect(search).to.deep.equal(true)
+  })
 })
