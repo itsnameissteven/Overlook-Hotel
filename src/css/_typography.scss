@@ -4,3 +4,22 @@ body {
   line-height: 1.7;
   color:$text-primary;
 }
+
+.header__title {
+  color:$text-secondary;
+  text-transform: uppercase;
+  font-family: 'Shrikhand', cursive;
+  // letter-spacing: 1;
+
+  &--main{
+    display: block;
+    font-size: 8rem;
+    letter-spacing: 3.5rem;
+  }
+
+  &--sub {
+    display: block;
+    font-size: 4rem;
+    letter-spacing: 1rem;
+  }
+}
