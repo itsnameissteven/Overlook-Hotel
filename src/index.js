@@ -1,11 +1,13 @@
 import './css/base.scss';
-import './images/turing-logo.png'
+// import './images/turing-logo.png'
 import Hotel from './Hotel';
 import Customer from './Customer';
 import data from './data';
 
-import './images/overlook-hotel.jpg'
+import './images/overlook-hotel.jpg';
+import './images/search_icon.svg';
 
+const searchButton = document.getElementById('searchBtn')
 
 let hotel;
 let customer;
@@ -42,6 +44,31 @@ const displayPointsEarned = (customer) => {
     total spent ${customer.returnTotalBookingCost(hotel)}`
 }
 
+const compileFormData = (elements) => {
+  const results = elements.reduce((data, element) => {
+    if(element.className.includes('room-type') && element.checked) {
+      data.push(element.value)
+    }
+    return data
+  },[])
+  return results
+}
+
+const retrieveFormValues = (e) => {
+  e.preventDefault()
+  const values = document.getElementById('searchForm').elements;
+  const valuess = Array.from(values)
+  compileFormData(valuess)
+  // valuess.forEach(val => {
+  //   console.log(val.value)
+  //   console.log(val.checked)
+  // })
+  // console.log(valuess)
+}
+
+
+
+
 // const login = (e) => {
 //   e.preventDefault();
 //   const userName = document.getElementById('userNameInput').value;
@@ -55,9 +82,10 @@ const displayPointsEarned = (customer) => {
 
 // document.getElementById('loginBtn').addEventListener('click', login)
 
-window.onload = () => {
-  createHotel();
-}
+window.onload = () =>  createHotel();
+
+searchButton.addEventListener('click', retrieveFormValues)
+
 
 // setTimeout(() => {
 //   console.log(hotel)

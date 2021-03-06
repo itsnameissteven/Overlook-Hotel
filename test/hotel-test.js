@@ -50,7 +50,7 @@ describe('Hotel', () => {
         costPerNight: 497.64
       }
     ];
-    const suitesSearch = overlook.filterRoomsBySearchCriteria(overlook.rooms, 'suite', 'roomType')
+    const suitesSearch = overlook.filterRoomsBySearchCriteria(overlook.rooms, ['suite'], 'roomType')
     expect(suitesSearch).to.deep.equal(suites);
   });
 
@@ -81,29 +81,29 @@ describe('Hotel', () => {
         costPerNight: 496.41
       }
     ]
-    const kingBedSearch = overlook.filterRoomsBySearchCriteria(overlook.rooms, 'king', 'bedSize');
+    const kingBedSearch = overlook.filterRoomsBySearchCriteria(overlook.rooms, ['king'], 'bedSize');
 
     expect(kingBedSearch).to.deep.equal(kingBeds);
   })
 
   it('Should return all rooms if they have enough beds', () => {
     const roomsByBedNumber = overlook.rooms.filter(room => room.numBeds === 2);
-    const bedNumSearch = overlook.filterRoomsBySearchCriteria(overlook.rooms, '2', 'numBeds');
+    const bedNumSearch = overlook.filterRoomsBySearchCriteria(overlook.rooms, ['2'], 'numBeds');
     expect(bedNumSearch).to.deep.equal(roomsByBedNumber);
   })
 
   it('Should return all rooms if no search input entered', () => {
-    expect(overlook.filterRoomsBySearchCriteria(overlook.rooms, '', 'roomType'))
+    expect(overlook.filterRoomsBySearchCriteria(overlook.rooms, [], 'roomType'))
       .to.deep.equal(overlook.rooms)
-    expect(overlook.filterRoomsBySearchCriteria(overlook.rooms, '', 'bedSize'))
+    expect(overlook.filterRoomsBySearchCriteria(overlook.rooms, [], 'bedSize'))
       .to.deep.equal(overlook.rooms)
-    expect(overlook.filterRoomsBySearchCriteria(overlook.rooms, '', 'numBeds'))
+    expect(overlook.filterRoomsBySearchCriteria(overlook.rooms, [], 'numBeds'))
       .to.deep.equal(overlook.rooms)
   });
  
   it('Should return filtered search results for all categories', () => {
     overlook.bookings = data.bookingsForSearch;
-    const search = overlook.returnAllFilteredResults('2020/01/31', "junior suite-suite", "2", "full")
+    const search = overlook.returnAllFilteredResults('2020/01/31', ["junior suite","suite"], ["full"], ["2"])
 
     expect(search).to.deep.equal([
       {
@@ -118,7 +118,7 @@ describe('Hotel', () => {
   })
 
   it('Should not work if no date is selected', () => {
-    const search = overlook.returnAllFilteredResults('', "junior suite-suite", "2", "full");
+    const search = overlook.returnAllFilteredResults('', ["junior", "suite-suite"], "full", "2");
     expect(search).to.deep.equal(true);
   })
 })

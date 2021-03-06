@@ -11,15 +11,15 @@ class Hotel {
     }
     const unavailable = this.bookings.filter(room => room.date === checkIn)
       .map(room => room.roomNumber);
-    return this.rooms.filter(room => !unavailable.includes(room.number))
+    return this.rooms.filter(room => !unavailable.includes(room.number));
   }
 
   filterRoomsBySearchCriteria(availableRooms, searchInput, type) {
-    if (!searchInput) {
+    if (searchInput.length === 0) {
       return availableRooms;
     }
-    const searchParameters = searchInput.split('-');
-    const results = searchParameters.reduce((foundRooms, keyword) => {
+    // const searchParameters = searchInput.split('-');
+    const results = searchInput.reduce((foundRooms, keyword) => {
       availableRooms.forEach(room => {
         if (room[type].toString() === keyword && !foundRooms.includes(room)) {
           foundRooms.push(room);
@@ -30,15 +30,15 @@ class Hotel {
     return results;
   }
 
-  returnAllFilteredResults(date, typeOfRoom, numberOfBeds, sizeOfBed) {
+  returnAllFilteredResults(date, typeOfRoom, sizeOfBed, numberOfBeds) {
     const availableRooms = this.checkAvailableRooms(date)
     if (availableRooms === true) {
       return true
     }
     const byType = this.filterRoomsBySearchCriteria(availableRooms, typeOfRoom, 'roomType');
-    const byNumberOfBeds = this.filterRoomsBySearchCriteria(byType, numberOfBeds, 'numBeds');
-    const byBedSize = this.filterRoomsBySearchCriteria(byNumberOfBeds, sizeOfBed, 'bedSize');
-    const finalResult = byBedSize;
+    const byBedSize = this.filterRoomsBySearchCriteria(byType, sizeOfBed, 'bedSize');
+    const byNumberOfBeds = this.filterRoomsBySearchCriteria(byBedSize, numberOfBeds, 'numBeds');
+    const finalResult = byNumberOfBeds;
     return finalResult;
   }
 
