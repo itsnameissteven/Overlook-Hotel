@@ -45,25 +45,31 @@ const displayPointsEarned = (customer) => {
 }
 
 const compileFormData = (elements) => {
-  const results = elements.reduce((data, element) => {
+  const data = {
+    date: elements[0].value.replace(/-/g, "/"),
+    roomType: [],
+    bedSize: [],
+    numBeds: []
+  }
+  elements.forEach(element => {
     if(element.className.includes('room-type') && element.checked) {
-      data.push(element.value)
+      data.roomType.push(element.value)
     }
-    return data
-  },[])
-  return results
+    if(element.className.includes('bed-size') && element.checked) {
+      data.bedSize.push(element.value)
+    }
+    if(element.className.includes('number-of-beds') && element.checked) {
+      data.numBeds.push(element.value)
+    }
+  })
+  return data
 }
 
 const retrieveFormValues = (e) => {
   e.preventDefault()
   const values = document.getElementById('searchForm').elements;
-  const valuess = Array.from(values)
-  compileFormData(valuess)
-  // valuess.forEach(val => {
-  //   console.log(val.value)
-  //   console.log(val.checked)
-  // })
-  // console.log(valuess)
+  const data = compileFormData(Array.from(values))
+  console.log(hotel.returnAllFilteredResults(data.date, data.roomType, data.bedSize, data.numBeds))
 }
 
 
