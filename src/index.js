@@ -31,17 +31,18 @@ const createUser = () => {
 const displayRooms = (customer) => {
   const bookedRooms = document.getElementById('bookedRooms')
   customer.organizeBookingsByDate(hotel).forEach(room => {
-    bookedRooms.innerHTML += 
-      `<section class="booked-room__card">
-          <img src="./images/room-1.jpg" alt="Hotel room with a bed and desk" class="booked-room__card__img">
-          <p class="booked-room__card__room-number">Room ${room.number}</p>
-          <p class="booked-room__card__date-booked">${room.dateBooked}</p>
-          <p class="booked-room__card__type"> ${room.roomType}</p>
-          <p class="booked-room__card__bed-size">Bed Size ${room.bedSize}</p>
-          <p class="booked-room__card__number-of-beds">Beds: ${room.numBeds}</p>
-          <p class="booked-room__card__cost">${room.costPerNight}</p>
-          <button class="booked-room__card__btn btn">I'm a button</button>
-        </section>`;
+    const section = document.createElement('section');
+    section.className = 'booked-room__card';
+    section.innerHTML = 
+      `<img src="./images/room-1.jpg" alt="Hotel room with a bed and desk" class="booked-room__card__img">
+      <p class="booked-room__card__room-number">Room ${room.number}</p>
+      <p class="booked-room__card__date-booked">${room.dateBooked}</p>
+      <p class="booked-room__card__type"> ${room.roomType}</p>
+      <p class="booked-room__card__bed-size">Bed Size ${room.bedSize}</p>
+      <p class="booked-room__card__number-of-beds">Beds: ${room.numBeds}</p>
+      <p class="booked-room__card__cost">${room.costPerNight}</p>
+      <button class="booked-room__card__btn btn">I'm a button</button>` 
+    bookedRooms.append(section);
   });
 };
 

@@ -30,7 +30,7 @@
       position: absolute;
       height: 100%;
       top: 20%;
-      line-height: 2 ;
+      // line-height: 2 ;
       // transform: translate(0, -50%);
       &--main {
         display: block;
@@ -38,8 +38,8 @@
 
       &--sub{
         display: block;
-        font-weight: 200;
-        color: $subtle-tones;
+        // font-weight: 200;
+        // color: $subtle-tones;
       }
     }
   }
