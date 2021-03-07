@@ -24,13 +24,14 @@ const createUser = () => {
   Promise.resolve(data.getUserData(50))
     .then(value => {
       customer = new Customer(value);
-      displayRooms(customer)
-      displayPointsEarned(customer)
+      displayRooms()
+      displayPointsEarned()
     })
 };
 
-const displayRooms = (customer) => {
+const displayRooms = () => {
   const bookedRooms = document.getElementById('bookedRooms')
+  bookedRooms.innerHTML = '';
   customer.organizeBookingsByDate(hotel).forEach(room => {
     const section = document.createElement('section');
     section.className = 'booked-room__card';
@@ -47,8 +48,7 @@ const displayRooms = (customer) => {
   });
 };
 
-const displayPointsEarned = (customer) => {
-  
+const displayPointsEarned = () => {
   const pointsEarned = document.getElementById('pointsEarned')
   pointsEarned.innerText = 
     `You've earned ${customer.returnPointsEarned(hotel)} points
@@ -116,8 +116,14 @@ const storeBookingData = (date, data) => {
 
 const bookRoom = (e) => {
   data.bookRoom(JSON.parse(e.target.parentElement.dataset.bookingData))
-    .then(hotel.bookings = data.getData('bookings')
-      .then(e.target.parentElement.remove()))
+    .then(response => response.json())
+    .then(data => {
+        hotel.bookings.push(data.newBooking)
+        console.log(hotel.bookings)
+        displayRooms()
+    })
+    .catch(err => alert(err))
+  e.target.parentElement.remove()
 }
 
 // const login = (e) => {

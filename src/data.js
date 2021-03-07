@@ -23,9 +23,6 @@ const data = {
       },
       body: JSON.stringify(room),
     })
-      .then(response => response.json())
-      .then(json => alert(json))
-      .catch(err => alert(err))
   },
   handleErrors(response) {
     if (!response.ok) {
