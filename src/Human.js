@@ -9,9 +9,18 @@ class Human {
   findSpecificRooms(hotel, id = this.id) {
     const roomsBooked = this.returnBookingHistory(hotel, id);
     const specificRooms = roomsBooked.map(room => {
-      return hotel.rooms.find(hotelRoom => hotelRoom.number === room.roomNumber)
+      const hotelRoom = hotel.rooms.find(hotelRoom => hotelRoom.number === room.roomNumber)
+      return {...hotelRoom, dateBooked:room.date}
     })
     return specificRooms;
+  }
+
+  organizeBookingsByDate(hotel, id = this.id) {
+    const bookedRooms = this.findSpecificRooms(hotel, id);
+    const sorted = bookedRooms.sort((a, b) => {
+      return new Date(b.dateBooked) - new Date(a.dateBooked);
+    })
+    return sorted;
   }
 
   returnTotalBookingCost(hotel, id = this.id) {

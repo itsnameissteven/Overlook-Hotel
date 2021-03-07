@@ -2,16 +2,49 @@
   position: relative;
   width: 100%;
   height: 100vh;
-  background-image: linear-gradient(0deg, rgba(0, 0, 0, 0.568), rgba(168, 168, 168, 0.267)), url('../images/overlook-hotel.jpg');
+  min-height: 80rem;
+  background-image: $primary-gradient, url('../images/overlook-hotel.jpg');
   background-size: cover;
   background-position:bottom;
   clip-path: polygon(0 0, 100% 0, 100% 80%, 0 100%);
 
   &__title {
-    position: absolute;
+    @include center(50%, 50%);
     text-align:center;
-    top:45%;
-    left:50%;
-    transform: translate(-50%, -50%);
+    
   }
+}
+
+.hotel-points {
+  position: relative;
+  height: 60rem;
+  text-align: right;
+  // padding-right: 8%;
+
+  &__header {
+    margin-bottom: 2rem;
+  }
+
+  &__img {
+    @include center(50%, 45%);
+    background-color: linear-gradient(0deg, rgba(0, 0, 0, 0.568), rgba(168, 168, 168, 0.267));
+    width: 60%;
+    border-radius: 6px;
+  }
+
+  &__tag-line {
+    @include center(30%, 20%);
+    text-align: left;
+    z-index: 5;
+  }
+}
+
+.points-container {
+  position: absolute;
+  width: fit-content;
+  right: 8%;
+}
+
+.hidden {
+  display: none;
 }
