@@ -10,7 +10,7 @@
     <title>Overlook Hotel</title>
   </head>
   <body>
-    <form class="search-bar" id="searchForm">
+    <form class="search-bar hidden" id="searchForm">
       <label for="date"></label>
       <input type="date" class="search-bar__input date" value="">
       <div class="search-bar__input">
@@ -78,10 +78,27 @@
       </form>
     </section>
     <main class="main">
-      <div class="booked-rooms"id="bookedRooms"></div>
       <div class="hotel-points" >
-        <h1 class="hotel-points__Header">Your Points</h1>
-        <p id="pointsEarned"></p>
+        <div class="points-container">
+          <h2 class="hotel-points__header">Your Points</h2>
+          <p class=hotel-points__points-earned id="pointsEarned"></p>
+        </div>
+        <p class="hotel-points__tag-line">
+          Earn 1 point for every ten dollars spent.<br>Book now to continue earning.
+        </p>
+        <img src="./images/joshua-tree.jpg" alt="The joshua tree landscape" class="hotel-points__img">
+      </div>
+      <div class="booked-rooms"id="bookedRooms">
+        <section class="booked-room__card">
+          <img src="./images/room-1.jpg" alt="Hotel room with a bed and desk" class="booked-room__card__img">
+          <p class="booked-room__card__room-number">Room 16</p>
+          <p class="booked-room__card__date-booked">12/22/2020</p>
+          <p class="booked-room__card__type"> single room</p>
+          <p class="booked-room__card__bed-size">Bed Size Full</p>
+          <p class="booked-room__card__number-of-beds">Beds: 2</p>
+          <p class="booked-room__card__cost">$341</p>
+          <button class="booked-room__card__btn btn">I'm a button</button>
+        </section>
       </div>
     </main>
   </body>

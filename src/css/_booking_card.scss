@@ -1,0 +1,57 @@
+.booked-room__card {
+  display: grid;
+  // justify-items: center;
+  grid-template-columns: 30rem repeat(2, 1fr);
+  grid-template-rows: repeat(5, 1fr);
+  height: fit-content;
+  width: 50%;
+  position: relative;
+  padding: 2.2rem;
+  // border-bottom: 2px solid $subtle-tones;
+  border: $test-border;
+
+  &__img {
+    grid-row: 1/6;
+    width: 30rem;
+    border-radius: 1rem;
+    // margin-top:2.2rem
+  }
+
+  &__room-number{
+    grid-column: 2;
+    margin-left: 1.5rem;
+  }
+
+  &__date-booked {
+    @extend .booked-room__card__room-number;
+  }
+
+  &__type {
+    @extend .booked-room__card__room-number;
+  }
+
+  &__number-of-beds {
+    grid-column: 3;
+    justify-self: right;
+  }
+  
+  &__bed-size{
+    grid-column: 3;
+    grid-row: 1;
+    justify-self: right;
+  }
+  &__btn {
+    grid-column: 3;
+    grid-row: 5;
+    width: 15rem;
+    justify-self: right;
+  }
+
+  &__cost{
+    grid-row: 5;
+    align-self: end;
+    margin-left: 1.5rem;
+  }
+
+
+}

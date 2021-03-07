@@ -5,6 +5,8 @@ import data from './data';
 
 import './images/overlook-hotel.jpg';
 import './images/search_icon.svg';
+import './images/joshua-tree.jpg';
+import './images/room-1.jpg';
 
 const searchButton = document.getElementById('searchBtn')
 
@@ -28,9 +30,18 @@ const createUser = () => {
 
 const displayRooms = (customer) => {
   const bookedRooms = document.getElementById('bookedRooms')
-  customer.findSpecificRooms(hotel).forEach(room => {
+  customer.organizeBookingsByDate(hotel).forEach(room => {
     bookedRooms.innerHTML += 
-      `<p class="booked-room">${JSON.stringify(room)}</p>`;
+      `<section class="booked-room__card">
+          <img src="./images/room-1.jpg" alt="Hotel room with a bed and desk" class="booked-room__card__img">
+          <p class="booked-room__card__room-number">Room ${room.number}</p>
+          <p class="booked-room__card__date-booked">${room.dateBooked}</p>
+          <p class="booked-room__card__type"> ${room.roomType}</p>
+          <p class="booked-room__card__bed-size">Bed Size ${room.bedSize}</p>
+          <p class="booked-room__card__number-of-beds">Beds: ${room.numBeds}</p>
+          <p class="booked-room__card__cost">${room.costPerNight}</p>
+          <button class="booked-room__card__btn btn">I'm a button</button>
+        </section>`;
   });
 };
 
@@ -38,9 +49,8 @@ const displayPointsEarned = (customer) => {
   
   const pointsEarned = document.getElementById('pointsEarned')
   pointsEarned.innerText = 
-    `You've earned ${customer.returnPointsEarned(hotel)}
-    Earn 1 point for every $10 spent
-    total spent ${customer.returnTotalBookingCost(hotel)}`
+    `You've earned ${customer.returnPointsEarned(hotel)} points
+    Total spent ${customer.returnTotalBookingCost(hotel)}`
 }
 
 const compileFormData = (elements) => {

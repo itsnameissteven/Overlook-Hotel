@@ -3,6 +3,7 @@ body {
   font-weight: 400;
   line-height: 1.7;
   color:$text-primary;
+  font-size: 1.6rem;
 }
 
 .header__title {
@@ -22,4 +23,24 @@ body {
     font-size: 4rem;
     letter-spacing: 1rem;
   }
+}
+
+.hotel-points {
+  
+  &__header {
+    font-size: 3rem;
+  }
+  &__points-earned {
+    font-size: 1.7rem;
+    line-height: 2;
+  }
+
+  &__tag-line {
+    font-weight: 400;
+    font-size: 2.5rem;
+  }
+}
+
+.booked-room__card {
+  font-size: 2rem;
 }
