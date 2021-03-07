@@ -76,17 +76,24 @@ const compileFormData = (elements) => {
 }
 
 const retrieveFormValues = (e) => {
-  // e.preventDefault()
   const values = document.getElementById('searchForm');
   const data = compileFormData(Array.from(values.elements))
   return data
-  // console.log(hotel.returnAllFilteredResults(data.date, data.roomType, data.bedSize, data.numBeds))
 }
 
 const displaySearchResults = (e) => {
   e.preventDefault()
   const data = retrieveFormValues()
-  console.log(hotel.returnAllFilteredResults(data.date, data.roomType, data.bedSize, data.numBeds))
+  const results = hotel.returnAllFilteredResults(data.date, 
+    data.roomType, data.bedSize, data.numBeds)
+  const availableRooms = document.getElementById('availableRooms');
+  availableRooms.innerHTML = ""
+  availableRooms.innerHTML =
+   `<h1> Rooms available on ${data.date}`
+  results.forEach(result => {
+    availableRooms.innerHTML += 
+    `<p>${JSON.stringify(result)}</p>`
+  });
 }
 
 
