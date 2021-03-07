@@ -1,5 +1,4 @@
 import './css/base.scss';
-// import './images/turing-logo.png'
 import Hotel from './Hotel';
 import Customer from './Customer';
 import data from './data';
@@ -67,12 +66,14 @@ const compileFormData = (elements) => {
 
 const retrieveFormValues = (e) => {
   e.preventDefault()
-  const values = document.getElementById('searchForm').elements;
-  const data = compileFormData(Array.from(values))
+  const values = document.getElementById('searchForm');
+  const data = compileFormData(Array.from(values.elements))
   console.log(hotel.returnAllFilteredResults(data.date, data.roomType, data.bedSize, data.numBeds))
 }
 
-
+const displaySearchResults = () => {
+console.log(hotel.returnAllFilteredResults(data.date, data.roomType, data.bedSize, data.numBeds))
+}
 
 
 // const login = (e) => {
