@@ -1,0 +1,21 @@
+.available-rooms {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, 32rem);
+  grid-gap: 1rem;
+  justify-content: center;
+
+
+  &__card {
+    border: $test-border;
+    height: 40rem;
+    padding:1rem;
+
+    &__img {
+      // @extend .booked-room__card__img;
+      // display: block;
+      width: 100%;
+      border-radius: 1rem;
+      // margin: 0 auto
+    }
+  }
+}
