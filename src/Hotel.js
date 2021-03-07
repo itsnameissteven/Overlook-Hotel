@@ -7,7 +7,7 @@ class Hotel {
   }
   checkAvailableRooms(checkIn) {
     if (!checkIn) {
-      return true
+      return false
     }
     const unavailable = this.bookings.filter(room => room.date === checkIn)
       .map(room => room.roomNumber);
@@ -32,8 +32,8 @@ class Hotel {
 
   returnAllFilteredResults(date, typeOfRoom, sizeOfBed, numberOfBeds) {
     const availableRooms = this.checkAvailableRooms(date)
-    if (availableRooms === true) {
-      return true
+    if (availableRooms === false) {
+      return false
     }
     const byType = this.filterRoomsBySearchCriteria(availableRooms, typeOfRoom, 'roomType');
     const byBedSize = this.filterRoomsBySearchCriteria(byType, sizeOfBed, 'bedSize');

@@ -28,7 +28,7 @@ describe('Hotel', () => {
   });
   
   it('Should let you know if no date was selected', () => {
-    expect(overlook.checkAvailableRooms()).to.deep.equal(true)
+    expect(overlook.checkAvailableRooms()).to.deep.equal(false)
   });
 
   it('Should return rooms by type if matched', () => {
@@ -119,6 +119,6 @@ describe('Hotel', () => {
 
   it('Should not work if no date is selected', () => {
     const search = overlook.returnAllFilteredResults('', ["junior", "suite-suite"], "full", "2");
-    expect(search).to.deep.equal(true);
+    expect(search).to.deep.equal(false);
   })
 })
