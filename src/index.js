@@ -1,11 +1,12 @@
 import './css/base.scss';
-import './images/turing-logo.png'
 import Hotel from './Hotel';
 import Customer from './Customer';
 import data from './data';
 
-import './images/overlook-hotel.jpg'
+import './images/overlook-hotel.jpg';
+import './images/search_icon.svg';
 
+const searchButton = document.getElementById('searchBtn')
 
 let hotel;
 let customer;
@@ -42,6 +43,39 @@ const displayPointsEarned = (customer) => {
     total spent ${customer.returnTotalBookingCost(hotel)}`
 }
 
+const compileFormData = (elements) => {
+  const data = {
+    date: elements[0].value.replace(/-/g, "/"),
+    roomType: [],
+    bedSize: [],
+    numBeds: []
+  }
+  elements.forEach(element => {
+    if(element.className.includes('room-type') && element.checked) {
+      data.roomType.push(element.value)
+    }
+    if(element.className.includes('bed-size') && element.checked) {
+      data.bedSize.push(element.value)
+    }
+    if(element.className.includes('number-of-beds') && element.checked) {
+      data.numBeds.push(element.value)
+    }
+  })
+  return data
+}
+
+const retrieveFormValues = (e) => {
+  e.preventDefault()
+  const values = document.getElementById('searchForm');
+  const data = compileFormData(Array.from(values.elements))
+  console.log(hotel.returnAllFilteredResults(data.date, data.roomType, data.bedSize, data.numBeds))
+}
+
+const displaySearchResults = () => {
+console.log(hotel.returnAllFilteredResults(data.date, data.roomType, data.bedSize, data.numBeds))
+}
+
+
 // const login = (e) => {
 //   e.preventDefault();
 //   const userName = document.getElementById('userNameInput').value;
@@ -55,9 +89,10 @@ const displayPointsEarned = (customer) => {
 
 // document.getElementById('loginBtn').addEventListener('click', login)
 
-window.onload = () => {
-  createHotel();
-}
+window.onload = () =>  createHotel();
+
+searchButton.addEventListener('click', retrieveFormValues)
+
 
 // setTimeout(() => {
 //   console.log(hotel)

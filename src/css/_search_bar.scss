@@ -12,7 +12,6 @@
   z-index:10;
   box-shadow: 0 1rem 2rem rgba(black, .2);
 
-
   &__input{
     position: relative;
     padding-left: 3rem;
@@ -44,6 +43,18 @@
       }
     }
   }
+  &__btn{
+    position:fixed;
+    right: 1%;
+    height:4.5rem;
+    width: 4.5rem;
+    border-radius: 100%;
+    background-color: #FF395B;
+    background-image: url('../images/search_icon.svg');
+    background-position: center;
+    background-repeat: no-repeat;
+  }
+   
 }
 
 .drop-down-menu {
