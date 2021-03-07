@@ -4,8 +4,13 @@ import data from './test-data';
 import Hotel from '../src/Hotel';
 
 describe('Hotel', () => {
-  const overlook = new Hotel("Overlook", data.rooms, 
-    data.bookings, data.customers);
+  let overlook;
+  
+  beforeEach(() => {
+    overlook = new Hotel("Overlook", data.rooms, 
+      data.bookings, data.customers);
+  }) 
+   
 
   it('Should be an instance of Hotel', () => {
     expect(Hotel).to.be.a('function');
@@ -33,6 +38,7 @@ describe('Hotel', () => {
 
   it('Should not let you book dates in the past', () => {
     expect(overlook.checkAvailableRooms('2020/03,10')).to.deep.equal(false)
+    expect(overlook.checkAvailableRooms(new Date).length).to.deep.equal(17)
   })
 
   it('Should return rooms by type if matched', () => {
