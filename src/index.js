@@ -8,7 +8,8 @@ import './images/search_icon.svg';
 import './images/joshua-tree.jpg';
 import './images/room-1.jpg';
 
-const searchButton = document.getElementById('searchBtn')
+const searchButton = document.getElementById('searchBtn');
+const availableRoomsSection = document.getElementById('availableRooms')
 
 let hotel;
 let customer;
@@ -91,7 +92,6 @@ const displaySearchResults = (e) => {
   availableRooms.innerHTML =
   `<h2 class="available-rooms__header"> Rooms available on ${data.date}</h2>`
   results.forEach(result => {
-    // storeBookingData(data.date, result);
     availableRooms.innerHTML += 
     `<section class="available-rooms__card" data-booking-data=${storeBookingData(data.date, result)} >
       <img src="./images/room-1.jpg" alt="Your next hotel room" class="available-rooms__card__img">
@@ -111,7 +111,13 @@ const storeBookingData = (date, data) => {
     date: date,
     roomNumber: data.number
   }
-  return bookingData
+  return JSON.stringify(bookingData)
+}
+
+const bookRoom = (e) => {
+  data.bookRoom(JSON.parse(e.target.parentElement.dataset.bookingData))
+    .then(hotel.bookings = data.getData('bookings')
+      .then(e.target.parentElement.remove()))
 }
 
 // const login = (e) => {
@@ -130,7 +136,7 @@ const storeBookingData = (date, data) => {
 window.onload = () =>  createHotel();
 
 searchButton.addEventListener('click', displaySearchResults)
-
+availableRoomsSection.addEventListener('click', bookRoom)
 
 // setTimeout(() => {
 //   console.log(hotel)

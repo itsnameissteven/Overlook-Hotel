@@ -15,6 +15,18 @@ const data = {
       .then(data => data)
       .catch(err => alert(err))
   },
+  bookRoom(room) {
+    return fetch('http://localhost:3001/api/v1/bookings', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(room),
+    })
+      .then(response => response.json())
+      .then(json => alert(json))
+      .catch(err => alert(err))
+  },
   handleErrors(response) {
     if (!response.ok) {
       throw Error(response.statusText);
