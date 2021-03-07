@@ -24,21 +24,21 @@ describe('Customer', () => {
       {
         id: '5fwrgu4i7k55hl6tc',
         userID: 6,
-        date: '2020/01/30',
+        date: '2022/01/30',
         roomNumber: 13,
         roomServiceCharges: []
       },
       {
         id: '5fwrgu4i7k55hl6td',
         userID: 6,
-        date: '2020/01/31',
+        date: '2022/01/31',
         roomNumber: 18,
         roomServiceCharges: []
       },
       {
         id: '5fwrgu4i7k55hl6te',
         userID: 6,
-        date: '2020/01/19',
+        date: '2022/01/19',
         roomNumber: 8,
         roomServiceCharges: []
       }

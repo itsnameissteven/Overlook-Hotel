@@ -6,7 +6,7 @@ class Hotel {
     this.customers = customers;
   }
   checkAvailableRooms(checkIn) {
-    if (!checkIn) {
+    if (!checkIn || new Date(checkIn) < new Date()) {
       return false
     }
     const unavailable = this.bookings.filter(room => room.date === checkIn)

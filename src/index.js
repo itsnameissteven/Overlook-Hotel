@@ -76,14 +76,17 @@ const compileFormData = (elements) => {
 }
 
 const retrieveFormValues = (e) => {
-  e.preventDefault()
+  // e.preventDefault()
   const values = document.getElementById('searchForm');
   const data = compileFormData(Array.from(values.elements))
-  console.log(hotel.returnAllFilteredResults(data.date, data.roomType, data.bedSize, data.numBeds))
+  return data
+  // console.log(hotel.returnAllFilteredResults(data.date, data.roomType, data.bedSize, data.numBeds))
 }
 
-const displaySearchResults = () => {
-console.log(hotel.returnAllFilteredResults(data.date, data.roomType, data.bedSize, data.numBeds))
+const displaySearchResults = (e) => {
+  e.preventDefault()
+  const data = retrieveFormValues()
+  console.log(hotel.returnAllFilteredResults(data.date, data.roomType, data.bedSize, data.numBeds))
 }
 
 
@@ -102,7 +105,7 @@ console.log(hotel.returnAllFilteredResults(data.date, data.roomType, data.bedSiz
 
 window.onload = () =>  createHotel();
 
-searchButton.addEventListener('click', retrieveFormValues)
+searchButton.addEventListener('click', displaySearchResults)
 
 
 // setTimeout(() => {
