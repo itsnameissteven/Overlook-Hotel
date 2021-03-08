@@ -11,54 +11,54 @@
   </head>
   <body>
     <form class="search-bar" id="searchForm">
-      <label for="date"></label>
-      <input type="date" class="search-bar__input date" value="" required>
-      <div class="search-bar__input">
+      <input type="date" class="search-bar__input date" id="dateInput" value="" required>
+      <label for="dateInput" class="date-label">date</label>
+      <div class="search-bar__input clickable">
         <h3 class="search-bar__input__header">
           <span class="search-bar__input__header--main">Room Type</span>
           <span class="search-bar__input__header--sub">Pick a Room Preference</span>
         </h3>
-        <div class="drop-down-menu">
-          <input type="checkbox" class="search-bar__input--room room-type" name ="single room" value="single room">
-          <label for="single room">Single Room</label><br>
-          <input type="checkbox" class="search-bar__input--room room-type" name="suite" value="suite">
+        <div class="drop-down-menu" aria-hidden="true">
+          <input type="checkbox" class="search-bar__input--room room-type" name ="single room" value="single room" id="singleRoom">
+          <label for="singleRoom">Single Room</label><br>
+          <input type="checkbox" class="search-bar__input--room room-type" name="suite" value="suite" id="suite">
           <label for="suite">Suite</label><br>
           <input type="checkbox" class="search-bar__input--room room-type" name="junior suite"
-          value="junior suite">
-          <label for="junior suite">Junior Suite</label><br>
-          <input type="checkbox" class="search-bar__input--room room-type" name="residential suite" value ="residential suite">
-          <label for="resdential suite">Residential Suite</label>
+          value="junior suite" id="juniorSuite">
+          <label for="juniorSuite">Junior Suite</label><br>
+          <input type="checkbox" class="search-bar__input--room room-type" name="residential suite" value ="residential suite" id="resdentialSuite">
+          <label for="resdentialSuite">Residential Suite</label>
         </div>
       </div>
-      <div class="search-bar__input">
+      <div class="search-bar__input clickable">
         <h3 class="search-bar__input__header">
           <span class="search-bar__input__header--main">Bed Size</span>
           <span class="search-bar__input__header--sub">Which size bed are you looking for?</span>
         </h3>
-        <div class="drop-down-menu">
-          <input type="checkbox" class="search-bar__input--room bed-size" name="twin" value="twin">
+        <div class="drop-down-menu input" aria-hidden="true">
+          <input type="checkbox" class="search-bar__input--room bed-size" name="twin" value="twin" id="twin">
           <label for="twin">Twin</label><br>
-          <input type="checkbox" class="search-bar__input--room bed-size" name="full" value="full">
+          <input type="checkbox" class="search-bar__input--room bed-size" name="full" value="full" id="full">
           <label for="full">Full</label><br>
-          <input type="checkbox" class="search-bar__input--room bed-size" name="queen" value="queen">
+          <input type="checkbox" class="search-bar__input--room bed-size" name="queen" value="queen" id="queen">
           <label for="queen">Queen</label><br>
-          <input type="checkbox" class="search-bar__input--room bed-size" name="king" value="king">
+          <input type="checkbox" class="search-bar__input--room bed-size" name="king" value="king" id="king">
           <label for="king">King</label>
         </div>
       </div>
-      <div class="search-bar__input">
+      <div class="search-bar__input clickable">
         <h3 class="search-bar__input__header">
           <span class="search-bar__input__header--main">Beds</span>
           <span class="search-bar__input__header--sub">How many would you like?</span>
         </h3>
-        <div class="drop-down-menu">
-          <input type="checkbox" class="search-bar__input--room number-of-beds" name="1" value="1">
-          <label for="1">1 Bed</label><br>
-          <input type="checkbox" class="search-bar__input--room number-of-beds" name="2" value="2">
-          <label for="2">2 Beds</label><br>
+        <div class="drop-down-menu input" aria-hidden="true">
+          <input type="checkbox" class="search-bar__input--room number-of-beds" name="1" value="1" id="one">
+          <label for="one">1 Bed</label><br>
+          <input type="checkbox" class="search-bar__input--room number-of-beds" name="2" value="2" id="two">
+          <label for="two">2 Beds</label><br>
         </div>
       </div>
-      <button class="search-bar__btn btn" id="searchBtn"></button>
+      <button class="search-bar__btn btn" id="searchBtn" aria-label="search"></button>
     </form>
     <header class="header">
       <h1 class="header__title">

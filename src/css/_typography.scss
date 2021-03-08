@@ -28,7 +28,7 @@ body {
 // Search Bar 
 
 .search-bar__input {
-  line-height: 1.8;
+  line-height: 1.7;
   font-size: 1.1rem;
 
   &__header--sub{
@@ -62,11 +62,18 @@ body {
   }
 }
 
+
 .booked-room__card {
   font-size: 2rem;
 }
 
 .booked-room__header {
+  font-family: 'Shrikhand', cursive;
+  font-size: 3rem;
+  letter-spacing: .5rem;
+}
+
+.available-rooms__header {
   font-family: 'Shrikhand', cursive;
   font-size: 3rem;
   letter-spacing: .5rem;
