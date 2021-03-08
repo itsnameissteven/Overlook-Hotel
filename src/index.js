@@ -195,8 +195,7 @@ const login = (e) => {
 }
 
 const handleSearchEvents = (e) => {
-  const menus = document.querySelectorAll('.drop-down-menu');
-  menus.forEach(element => element.setAttribute('aria-hidden', 'true'));
+  hideSearchDropDowns();
   if (!!e.target.closest('.clickable')) {
     const target = e.target.closest('.clickable').childNodes[3]
     target.setAttribute('aria-hidden', 'false')
@@ -212,20 +211,19 @@ const handleSearchEvents = (e) => {
 // }
 const closeSearchBar = (e) => {
   if (!e.target.closest('.search-bar')) {
-    const menus = document.querySelectorAll('.drop-down-menu')
-    menus.forEach(element => element.setAttribute('aria-hidden', 'true')) 
+    hideSearchDropDowns() 
   }
+}
+
+const hideSearchDropDowns = () => {
+  const menus = document.querySelectorAll('.drop-down-menu')
+  menus.forEach(element => element.setAttribute('aria-hidden', 'true'))
 }
 
 document.getElementById('loginBtn').addEventListener('click', login)
 window.onload = () =>  createHotel();
-window.addEventListener('click', closeSearchBar)
-window.addEventListener('scroll', () => {
-  let location = window.scrollY
-  console.log(location > 100)
-  const menus = document.querySelectorAll('.drop-down-menu')
-    menus.forEach(element => element.setAttribute('aria-hidden', 'true'))
-})
+window.addEventListener('click', closeSearchBar);
+window.addEventListener('scroll', hideSearchDropDowns);
 searchButton.addEventListener('click', displaySearchResults);
 availableRoomsSection.addEventListener('click', makeReservation);
 bookedRooms.addEventListener('click', cancelReservation)
