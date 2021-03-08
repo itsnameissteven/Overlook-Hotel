@@ -6,7 +6,8 @@ import data from './data';
 import './images/overlook-hotel.jpg';
 import './images/search_icon.svg';
 import './images/joshua-tree.jpg';
-import './images/login-hotel.jpg'
+import './images/login-hotel.jpg';
+import './images/sunset.jpg';
 import './images/room-1.jpg';
 import './images/room-2.jpg';
 import './images/room-3.jpg';
