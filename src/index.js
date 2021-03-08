@@ -10,6 +10,7 @@ import './images/room-1.jpg';
 
 const searchButton = document.getElementById('searchBtn');
 const availableRoomsSection = document.getElementById('availableRooms')
+const bookedRooms = document.getElementById('bookedRooms')
 
 let hotel;
 let customer;
@@ -29,12 +30,20 @@ const createUser = () => {
     })
 };
 
+const disableButton = (date) => {
+  if(new Date(date) < new Date()) {
+    return 'disabled';
+  }
+  return
+}
+
 const displayRooms = () => {
   const bookedRooms = document.getElementById('bookedRooms')
   bookedRooms.innerHTML = '';
   customer.organizeBookingsByDate(hotel).forEach(room => {
     const section = document.createElement('section');
     section.className = 'booked-room__card';
+    section.dataset.bookingID = room.bookingID;
     section.innerHTML = 
       `<img src="./images/room-1.jpg" alt="Hotel room with a bed and desk" class="booked-room__card__img">
       <p class="booked-room__card__room-number">Room ${room.number}</p>
@@ -43,7 +52,7 @@ const displayRooms = () => {
       <p class="booked-room__card__bed-size">Bed Size ${room.bedSize}</p>
       <p class="booked-room__card__number-of-beds">Beds: ${room.numBeds}</p>
       <p class="booked-room__card__cost">${room.costPerNight}</p>
-      <button class="booked-room__card__btn btn">I'm a button</button>` 
+      <button class="booked-room__card__btn btn" ${disableButton(room.dateBooked)}>Cancel Reservation</button>` 
     bookedRooms.append(section);
   });
 };
@@ -78,19 +87,19 @@ const compileFormData = (elements) => {
 
 const retrieveFormValues = (e) => {
   const values = document.getElementById('searchForm');
-  const data = compileFormData(Array.from(values.elements))
-  return data
+  const data = compileFormData(Array.from(values.elements));
+  return data;
 }
 
 const displaySearchResults = (e) => {
-  e.preventDefault()
-  const data = retrieveFormValues()
+  e.preventDefault();
+  const data = retrieveFormValues();
   const results = hotel.returnAllFilteredResults(data.date, 
-    data.roomType, data.bedSize, data.numBeds)
+    data.roomType, data.bedSize, data.numBeds);
   const availableRooms = document.getElementById('availableRooms');
-  availableRooms.innerHTML = ""
+  availableRooms.innerHTML = "";
   availableRooms.innerHTML =
-  `<h2 class="available-rooms__header"> Rooms available on ${data.date}</h2>`
+  `<h2 class="available-rooms__header"> Rooms available on ${data.date}</h2>`;
   results.forEach(result => {
     availableRooms.innerHTML += 
     `<section class="available-rooms__card" data-booking-data=${storeBookingData(data.date, result)} >
@@ -110,21 +119,42 @@ const storeBookingData = (date, data) => {
     userID: customer.id,
     date: date,
     roomNumber: data.number
-  }
-  return JSON.stringify(bookingData)
+  };
+  return JSON.stringify(bookingData);
 }
 
-const bookRoom = (e) => {
-  data.bookRoom(JSON.parse(e.target.parentElement.dataset.bookingData))
-    .then(response => response.json())
-    .then(data => {
-        hotel.bookings.push(data.newBooking)
-        console.log(hotel.bookings)
-        displayRooms()
-    })
-    .catch(err => alert(err))
-  e.target.parentElement.remove()
+const makeReservation = (e) => {
+  if(e.target.className.includes('btn')) {
+    data.bookRoom(JSON.parse(e.target.parentElement.dataset.bookingData))
+      .then(response => response.json())
+      .then(data => {
+          hotel.bookings.push(data.newBooking)
+          // console.log(hotel.bookings)
+          displayRooms()
+      })
+      .catch(err => alert(err))
+    e.target.parentElement.remove()
+  }
 }
+
+const cancelReservation = (e) => {
+  if(e.target.className.includes('btn')) {
+    const id = e.target.parentElement.dataset.bookingID
+    data.cancelBooking(id)
+      .then(response => response.json())
+      .then(data =>  data)
+      .catch(err => alert(err))
+  }
+  Promise.resolve(data.getData('bookings')) 
+    .then(values => {
+      hotel.bookings = values;
+      displayRooms();
+    });
+}
+
+
+
+
 
 // const login = (e) => {
 //   e.preventDefault();
@@ -140,9 +170,12 @@ const bookRoom = (e) => {
 // document.getElementById('loginBtn').addEventListener('click', login)
 
 window.onload = () =>  createHotel();
+searchButton.addEventListener('click', displaySearchResults);
+availableRoomsSection.addEventListener('click', makeReservation);
+bookedRooms.addEventListener('click', cancelReservation)
 
-searchButton.addEventListener('click', displaySearchResults)
-availableRoomsSection.addEventListener('click', bookRoom)
+
+
 
 // setTimeout(() => {
 //   console.log(hotel)

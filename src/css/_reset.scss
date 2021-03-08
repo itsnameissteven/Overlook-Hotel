@@ -24,6 +24,10 @@ body {
 .btn {
   border: 0;
   outline: 0;
+
+  &:disabled {
+    background-color: pink
+  }
 }
 
 ::-webkit-scrollbar {

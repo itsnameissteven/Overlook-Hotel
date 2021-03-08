@@ -24,12 +24,27 @@ const data = {
       body: JSON.stringify(room),
     })
   },
+  cancelBooking(id) {
+    // console.log(typeof thinkg)
+    return fetch('http://localhost:3001/api/v1/bookings/' + id, {
+      method: 'DELETE',
+      // headers: {
+      //   'Content-Type': 'application/json'
+      // },
+      // body: JSON.stringify(id),
+    })
+  },
+  
+
+
   handleErrors(response) {
     if (!response.ok) {
       throw Error(response.statusText);
     }
     return response.json()
   }
+
+
 }
 
 export default data;
