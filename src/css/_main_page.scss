@@ -19,6 +19,7 @@
   position: relative;
   height: 60rem;
   text-align: right;
+  margin-top: 8rem;
   // padding-right: 8%;
 
   &__header {
@@ -41,10 +42,23 @@
 
 .points-container {
   position: absolute;
-  width: fit-content;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  // align-items: flex-start;
+  width: 30rem;
+  height: 30rem;
   right: 8%;
+  background-color: #60AF8A;
+  padding:3rem;
+  z-index:5;
+  border-radius: 50% 20% 50% 40%
 }
 
 .hidden {
+  display: none;
+}
+
+[aria-hidden="true"] {
   display: none;
 }
