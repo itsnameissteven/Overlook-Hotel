@@ -157,28 +157,20 @@ const cancelReservation = (e) => {
 
 
 
-// const login = (e) => {
-//   e.preventDefault();
-//   const userName = document.getElementById('userNameInput').value;
-//   const password = document.getElementById('passwordInput').value;
-//   const url = `http://localhost:3001/api/v1/customers/${userName.replace('overlook', '')}`
-//   getUserData(url)
-//   setTimeout(() => {
-//     console.log(user)
-//   }, 1000)
-// }
+const login = (e) => {
+  e.preventDefault();
+  const userName = document.getElementById('userNameInput').value;
+  const password = document.getElementById('passwordInput').value;
+  const url = `http://localhost:3001/api/v1/customers/${userName.replace('overlook', '')}`
+  getUserData(url)
+  setTimeout(() => {
+    console.log(user)
+  }, 1000)
+}
 
-// document.getElementById('loginBtn').addEventListener('click', login)
+document.getElementById('loginBtn').addEventListener('click', login)
 
 window.onload = () =>  createHotel();
 searchButton.addEventListener('click', displaySearchResults);
 availableRoomsSection.addEventListener('click', makeReservation);
 bookedRooms.addEventListener('click', cancelReservation)
-
-
-
-
-// setTimeout(() => {
-//   console.log(hotel)
-//   console.log(hotel.checkAvailableRooms("2020/01/31"))
-// }, 200)

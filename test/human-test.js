@@ -38,7 +38,8 @@ describe('Human behaviour', () => {
       bedSize: 'queen',
       numBeds: 2,
       costPerNight: 423.92,
-      dateBooked: "2022/01/30"
+      dateBooked: "2022/01/30",
+      bookingID: "5fwrgu4i7k55hl6tc"
     },
     {
       number: 18,
@@ -47,7 +48,8 @@ describe('Human behaviour', () => {
       bedSize: 'king',
       numBeds: 2,
       costPerNight: 496.41,
-      dateBooked: "2022/01/31"
+      dateBooked: "2022/01/31",
+      bookingID: "5fwrgu4i7k55hl6td"
     },
     {
       number: 8,
@@ -56,7 +58,8 @@ describe('Human behaviour', () => {
       bedSize: 'king',
       numBeds: 1,
       costPerNight: 261.26,
-      dateBooked: "2022/01/19"
+      dateBooked: "2022/01/19",
+      bookingID: "5fwrgu4i7k55hl6te"
     }
   ]
 
