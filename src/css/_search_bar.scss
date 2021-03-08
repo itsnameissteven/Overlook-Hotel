@@ -73,7 +73,7 @@
 
 
 label{
-  width:0%;
+  width:fit-content;
   height: 50%;
   
   &:not(:last-child) {
@@ -82,4 +82,8 @@ label{
   &:hover{
     // border:none
   }
+}
+
+.date-label {
+  color:white;
 }
