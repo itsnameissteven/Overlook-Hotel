@@ -169,7 +169,6 @@ const login = (e) => {
 }
 
 document.getElementById('loginBtn').addEventListener('click', login)
-
 window.onload = () =>  createHotel();
 searchButton.addEventListener('click', displaySearchResults);
 availableRoomsSection.addEventListener('click', makeReservation);
