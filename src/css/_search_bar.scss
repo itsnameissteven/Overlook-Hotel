@@ -48,13 +48,14 @@
   &__btn{
     position:fixed;
     right: 1%;
-    height:4.5rem;
-    width: 4.5rem;
-    border-radius: 100%;
-    background-color: $accent;
-    background-image: url('../images/search_icon.svg');
-    background-position: center;
-    background-repeat: no-repeat;
+    // height:4.5rem;
+    // width: 4.5rem;
+    // border-radius: 100%;
+    // background-color: $accent;
+    // background-image: url('../images/search_icon.svg');
+    // background-position: center;
+    // background-repeat: no-repeat;
+    @include roundButton ('../images/search_icon.svg')
   }
    
 }

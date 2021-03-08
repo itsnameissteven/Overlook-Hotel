@@ -5,6 +5,7 @@ import data from './data';
 
 import './images/overlook-hotel.jpg';
 import './images/search_icon.svg';
+import './images/exit.svg';
 import './images/joshua-tree.jpg';
 import './images/login-hotel.jpg';
 import './images/sunset.jpg';
@@ -39,20 +40,19 @@ const searchButton = document.getElementById('searchBtn');
 const availableRoomsSection = document.getElementById('availableRooms');
 const bookedRooms = document.getElementById('bookedRooms');
 const searchForm = document.getElementById('searchForm');
+const bookingErrorMessage = document.getElementById('bookingErrorMessage');
 
 let hotel;
 let customer;
 
 const createHotel = () => {
   Promise.all(data.getAllHotelData())
-    .then(values => hotel = new Hotel("overLook", values[0], values[1], values[2]))
-    // .then(createUser);
+    .then(values => hotel = new Hotel("overLook", values[0], values[1], values[2]));
 };
 
 const createUser = (e) => {
   e.preventDefault();
   const userName = document.getElementById('userNameInput').value;
-  
   Promise.resolve(data.getUserData(parseInt(findUserID(userName)), () => showLoginError()))
   .then(value => {
       customer = new Customer(value);
@@ -65,8 +65,8 @@ const createUser = (e) => {
 const login = (e) => {
   const password = document.getElementById('passwordInput').value;
   if (password !== 'overlook2021') {
-    showLoginError()
-    return
+    showLoginError();
+    return;
   }
   showMain();
 }
@@ -137,23 +137,29 @@ const displaySearchResults = (e) => {
   const data = retrieveFormValues();
   const results = hotel.returnAllFilteredResults(data.date, 
     data.roomType, data.bedSize, data.numBeds);
-  const availableRooms = document.getElementById('availableRooms');
-  availableRooms.innerHTML = "";
-  availableRooms.innerHTML =
-  `<h2 class="available-rooms__header"> Rooms available on ${data.date}</h2>`;
-  results.forEach(result => {
-    availableRooms.innerHTML += 
-    `<section class="available-rooms__card" data-booking-data=${storeBookingData(data.date, result)} >
-      <img src="./images/room-1.jpg" alt="Your next hotel room" class="available-rooms__card__img">
-      <p class="available-rooms__card__room-number">Room ${result.number}</p>
-      <p class="available-rooms__card__room-type">${result.roomType}</p>
-      <p class="available-rooms__card__bed-size">${result.bedSize}</p>
-      <p class="available-rooms__card__number-of-beds">${result.numBeds}</p>
-      <p class="available-rooms__card__has-bidet">${result.bidet ? "Complimentary Bidet!" : ""}</p>
-      <button class="available-rooms__card__book-btn book-now btn">Book Now</button>
-    </section>`
-  });
-  document.location.href = '#availableRooms' 
+  const header = results.length === 0 ? 
+    `Sorry no rooms match your search criteria for ${data.date}. Please try again` : `Rooms available on ${data.date}`
+  if(results) {
+    const availableRooms = document.getElementById('availableRooms');
+    availableRooms.innerHTML = "";
+    availableRooms.innerHTML =
+    `<h2 class="available-rooms__header"> ${header} </h2>`;
+    results.forEach(result => {
+      availableRooms.innerHTML += 
+      `<section class="available-rooms__card" data-booking-data=${storeBookingData(data.date, result)} >
+        <img src="./images/room-1.jpg" alt="Your next hotel room" class="available-rooms__card__img">
+        <p class="available-rooms__card__room-number">Room ${result.number}</p>
+        <p class="available-rooms__card__room-type">${result.roomType}</p>
+        <p class="available-rooms__card__bed-size">${result.bedSize}</p>
+        <p class="available-rooms__card__number-of-beds">${result.numBeds}</p>
+        <p class="available-rooms__card__has-bidet">${result.bidet ? "Complimentary Bidet!" : ""}</p>
+        <button class="available-rooms__card__book-btn book-now btn">Book Now</button>
+      </section>`
+    });
+    document.location.href = '#availableRooms' ;
+    return; 
+  }
+  bookingErrorMessage.setAttribute('aria-hidden', 'false');
 }
 
 const storeBookingData = (date, data) => {
@@ -239,10 +245,17 @@ const hideSearchDropDowns = () => {
   menus.forEach(element => element.setAttribute('aria-hidden', 'true'))
 }
 
+const hideErrorMessage = () => bookingErrorMessage.setAttribute('aria-hidden', 'true')
+
+const hideOnScroll = () => {
+  hideErrorMessage();
+  hideSearchDropDowns();
+}
+
 document.getElementById('loginBtn').addEventListener('click', createUser)
 window.onload = () =>  createHotel();
 window.addEventListener('click', closeSearchBar);
-window.addEventListener('scroll', hideSearchDropDowns);
+window.addEventListener('scroll', hideOnScroll);
 searchButton.addEventListener('click', displaySearchResults);
 availableRoomsSection.addEventListener('click', makeReservation);
 bookedRooms.addEventListener('click', cancelReservation)

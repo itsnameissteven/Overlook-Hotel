@@ -7,6 +7,7 @@
 
   &__hero-img {
     width:100%;
+    min-width: 40rem;
   }
 }
 
@@ -29,10 +30,12 @@
 
 .login-page__form__btn {
   background-color: #4CAEA6;
+  color: white;
 }
 
 .login-error-msg {
   @extend .login-form__input;
+  color: #fff;
   height: fit-content;
   padding: 1rem;
   background-color: #ff0033;

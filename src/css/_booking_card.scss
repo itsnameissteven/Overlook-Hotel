@@ -15,7 +15,7 @@
 }
 
 .booked-room__img{
-  height:100vh;
+  width: 100%;
 }
 
 .booked-room__header {
@@ -23,21 +23,17 @@
 }
 .booked-room__card {
   display: grid;
-  // justify-items: center;
   grid-template-columns: 30rem repeat(2, 1fr);
   grid-template-rows: repeat(5, 1fr);
   height: fit-content;
-  // width: 60%;
   position: relative;
   padding: 2.2rem;
   border-bottom: 2px solid $subtle-tones;
-  // border: $test-border;
 
   &__img {
     grid-row: 1/6;
     width: 30rem;
     border-radius: 1rem;
-    // margin-top:2.2rem
   }
 
   &__room-number{
@@ -64,6 +60,9 @@
     justify-self: right;
   }
   &__btn {
+    color: #fff;
+    background-color: $accent;
+    border-radius: .6rem;
     grid-column: 3;
     grid-row: 5;
     width: 15rem;

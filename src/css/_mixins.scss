@@ -11,3 +11,13 @@
   left: $left;
   transform: translate(-50%, -50%);
 }
+
+@mixin roundButton ($img) {
+  border-radius: 100%;
+    background-color: $accent;
+    background-image: url($img);
+    background-position: center;
+    background-repeat: no-repeat;
+    height:4.5rem;
+    width: 4.5rem;
+}
