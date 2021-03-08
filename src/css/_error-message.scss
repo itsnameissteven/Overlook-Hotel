@@ -12,10 +12,10 @@
   border-radius: 3rem;
   border: 1px solid $subtle-tones;
 
-  &__exit-btn {
-    position: absolute;
-    top: 2rem;
-    right: 2rem;
-    @include roundButton('../images/exit.svg')
-  }
+}
+.exit-btn {
+  position: absolute;
+  top: 2rem;
+  right: 2rem;
+  @include roundButton('../images/exit.svg')
 }

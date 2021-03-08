@@ -126,7 +126,7 @@ const compileFormData = (elements) => {
   return data;
 }
 
-const retrieveFormValues = (e) => {
+const retrieveFormValues = () => {
   const values = document.getElementById('searchForm');
   const data = compileFormData(Array.from(values.elements));
   return data;
@@ -147,7 +147,9 @@ const displaySearchResults = (e) => {
     results.forEach(result => {
       availableRooms.innerHTML += 
       `<section class="available-rooms__card" data-booking-data=${storeBookingData(data.date, result)} >
-        <img src="./images/room-${result.number}.jpg" alt="Your next hotel room" class="available-rooms__card__img">
+        <div class="hotel-img-container">
+          <img src="./images/room-${result.number}.jpg" alt="Your next hotel room" class="available-rooms__card__img">
+        </div>
         <p class="info available-rooms__card__room-number">Room ${result.number}</p>
         <p class="info available-rooms__card__room-type">${result.roomType}</p>
         <p class="info available-rooms__card__bed-size">${result.bedSize}</p>
@@ -234,7 +236,10 @@ const handleSearchEvents = (e) => {
 
 
 
-const closeSearchBar = (e) => {
+const closeSearchBar = (e) => { 
+  if(e.target.className.includes('exit-btn')) {
+    hideErrorMessage()
+  }
   if (!e.target.closest('.search-bar')) {
     hideSearchDropDowns() 
   }
@@ -253,7 +258,7 @@ const hideOnScroll = () => {
 }
 
 document.getElementById('loginBtn').addEventListener('click', createUser)
-window.onload = () =>  createHotel();
+window.onload = createHotel();
 window.addEventListener('click', closeSearchBar);
 window.addEventListener('scroll', hideOnScroll);
 searchButton.addEventListener('click', displaySearchResults);
