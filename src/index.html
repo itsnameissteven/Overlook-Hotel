@@ -67,15 +67,21 @@
       </h1>
     </header>
     <section class="login-page" id="loginPage">
-      <form class="login-page__form" id="loginForm">
-        <label for="usernameNameInput">
-          <input type="text" name="userName" placeholder="Username" id="userNameInput" required>
-        </label>
-        <label for="passwordInput">
-          <input type="password" name="password" placeholder="Password" id="passwordInput" required>
-        </label>
-        <input type="submit" placeholder="Login" class="login-page__form__btn btn" id="loginBtn">
-      </form>
+      <div class="login-page__img">
+        <img src="./images/login-hotel.jpg" alt="Vintage hotel sign" class="login-page__img__hero-img">
+      </div>
+      <div class="login-page__form-container">
+        <h1 class="login-page__header">Welcome Back!<br>Please Login</h1>
+        <form class="login-page__form" id="loginForm">
+          <label for="usernameNameInput">
+            <input type="text" class="login-form__input" name="userName" placeholder="Username" id="userNameInput" required>
+          </label>
+          <label for="passwordInput">
+            <input type="password" class="login-form__input" name="password" placeholder="Password" id="passwordInput" required>
+          </label>
+          <input type="submit" placeholder="Login" class="login-form__input login-page__form__btn btn" id="loginBtn">
+        </form>
+      </div>    
     </section>
     <main class="main main-page" aria-hidden="true">
       <div class="hotel-points" >
