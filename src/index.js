@@ -50,6 +50,7 @@ const createHotel = () => {
 
 const createUser = (id) => {
   Promise.resolve(data.getUserData(id))
+    .then(response => console.log(response.statusText))
     .then(value => {
       customer = new Customer(value);
       displayRooms();
@@ -184,7 +185,7 @@ const cancelReservation = (e) => {
 
 const findUserID = (userName) => userName.replace("overlook", "");
 
-const unhideMain = () => {
+const showMain = () => {
   const mainElements = document.querySelectorAll('.main-page');
   document.getElementById('loginPage').setAttribute('aria-hidden', 'true');
   mainElements.forEach(element => element.setAttribute('aria-hidden', 'false'));
@@ -195,16 +196,19 @@ const login = (e) => {
   e.preventDefault();
   const userName = document.getElementById('userNameInput').value;
   const password = document.getElementById('passwordInput').value;
-  console.log(parseInt(findUserID(userName)))
-
+  if (password !== 'overlook2021') {
+    showLoginError()
+    return
+  }
   createUser(parseInt(findUserID(userName)))
-  unhideMain();
-  // const url = `http://localhost:3001/api/v1/customers/${userName.replace('overlook', '')}`
-  // getUserData(url)
-  // setTimeout(() => {
-  //   console.log(user)
-  // }, 1000)
+  showMain();
 }
+
+const showLoginError = () => {
+  const errorMessage = document.getElementById('errorMessage')
+  errorMessage.setAttribute('aria-hidden', 'false')
+}
+
 
 const handleSearchEvents = (e) => {
   hideSearchDropDowns();
@@ -220,6 +224,8 @@ const handleSearchEvents = (e) => {
 //     console.log(e.target.closest(sibling))
 //   }
 // }
+
+
 
 const closeSearchBar = (e) => {
   if (!e.target.closest('.search-bar')) {

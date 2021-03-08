@@ -28,5 +28,12 @@
 }
 
 .login-page__form__btn {
-  background-color: #4C75AE;
+  background-color: #4CAEA6;
+}
+
+.login-error-msg {
+  @extend .login-form__input;
+  height: fit-content;
+  padding: 1rem;
+  background-color: #ff0033;
 }
