@@ -27,14 +27,18 @@
   }
 
   &__img {
-    @include center(50%, 45%);
+    @include center(10%, 15%);
+    transform: translate(0,0);
     background-color: linear-gradient(0deg, rgba(0, 0, 0, 0.568), rgba(168, 168, 168, 0.267));
-    width: 60%;
+    // width: 60%;  
+    width: 80rem;
     border-radius: 6px;
   }
 
   &__tag-line {
-    @include center(30%, 20%);
+    position: absolute;
+    left: 0;
+    top: 15rem;
     text-align: left;
     z-index: 5;
   }

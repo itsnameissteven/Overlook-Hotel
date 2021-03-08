@@ -43,8 +43,6 @@ const data = {
     }
     return response.json()
   }
-
-
 }
 
 export default data;

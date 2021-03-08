@@ -62,11 +62,18 @@ body {
   }
 }
 
+
 .booked-room__card {
   font-size: 2rem;
 }
 
 .booked-room__header {
+  font-family: 'Shrikhand', cursive;
+  font-size: 3rem;
+  letter-spacing: .5rem;
+}
+
+.available-rooms__header {
   font-family: 'Shrikhand', cursive;
   font-size: 3rem;
   letter-spacing: .5rem;

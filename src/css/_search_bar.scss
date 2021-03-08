@@ -6,16 +6,18 @@
   left: 50%;
   transform: translate(-50%);
   height: 7rem;
+  // min-height: fit-content;
   width:80%;
   background-color: $text-secondary;
   border-radius: 5rem;
   z-index:10;
-  box-shadow: 0 1rem 2rem rgba(black, .2);
+  box-shadow: $main-drop-shadow;
 
   &__input{
     position: relative;
     padding-left: 3rem;
     width: 100%;
+    // min-height: fit-content;
     height: 100%;
     border-radius: 100px;
     border: none;
@@ -75,6 +77,7 @@
 label{
   width:fit-content;
   height: 50%;
+  // min-height: fit-content;
   
   &:not(:last-child) {
     // border-right: 1px solid rgb(173, 173, 173);
@@ -83,7 +86,12 @@ label{
     // border:none
   }
 }
+.date {
+  width: 70rem;
+}
 
 .date-label {
-  color:white;
+  // width: fit-content;
+  // color:white;
+  font-size: 0;
 }

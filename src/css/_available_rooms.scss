@@ -1,8 +1,9 @@
 .available-rooms {
   display: grid;
-  grid-template-columns: repeat(auto-fill, 32rem);
+  grid-template-columns: repeat(auto-fill, minmax(28rem, 1fr));
   grid-gap: 1rem;
   padding-top: 10rem;
+  width:100%;
   // grid-template-rows: 20rem;
   justify-content: center;
 
@@ -13,9 +14,12 @@
   }
 
   &__card {
-    border: $test-border;
+    // border: $test-border;
+    border: 1px solid $subtle-tones;
+    width: 28rem;
     height: 40rem;
     padding:1rem;
+    border-radius: .6rem;
 
     &__img {
       // @extend .booked-room__card__img;
