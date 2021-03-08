@@ -6,9 +6,11 @@ import data from './data';
 import './images/overlook-hotel.jpg';
 import './images/search_icon.svg';
 import './images/joshua-tree.jpg';
+import './images/login-hotel.jpg'
 import './images/room-1.jpg';
 import './images/room-2.jpg';
 import './images/room-3.jpg';
+import './images/room-4.jpg';
 import './images/room-5.jpg';
 import './images/room-6.jpg';
 import './images/room-7.jpg';
@@ -43,17 +45,30 @@ let customer;
 const createHotel = () => {
   Promise.all(data.getAllHotelData())
     .then(values => hotel = new Hotel("overLook", values[0], values[1], values[2]))
-    .then(createUser);
+    // .then(createUser);
 };
 
-const createUser = () => {
-  Promise.resolve(data.getUserData(50))
-    .then(value => {
+const createUser = (e) => {
+  e.preventDefault();
+  const userName = document.getElementById('userNameInput').value;
+  
+  Promise.resolve(data.getUserData(parseInt(findUserID(userName)), () => showLoginError()))
+  .then(value => {
       customer = new Customer(value);
+      login();
       displayRooms();
       displayPointsEarned();
-    });
+    })
 };
+
+const login = (e) => {
+  const password = document.getElementById('passwordInput').value;
+  if (password !== 'overlook2021') {
+    showLoginError()
+    return
+  }
+  showMain();
+}
 
 const disableButton = (date) => {
   if(new Date(date) < new Date()) {
@@ -180,19 +195,20 @@ const cancelReservation = (e) => {
 }
 
 
+const findUserID = (userName) => userName.replace("overlook", "");
 
-
-
-const login = (e) => {
-  e.preventDefault();
-  const userName = document.getElementById('userNameInput').value;
-  const password = document.getElementById('passwordInput').value;
-  const url = `http://localhost:3001/api/v1/customers/${userName.replace('overlook', '')}`
-  getUserData(url)
-  setTimeout(() => {
-    console.log(user)
-  }, 1000)
+const showMain = () => {
+  const mainElements = document.querySelectorAll('.main-page');
+  document.getElementById('loginPage').setAttribute('aria-hidden', 'true');
+  mainElements.forEach(element => element.setAttribute('aria-hidden', 'false'));
 }
+
+
+const showLoginError = () => {
+  const errorMessage = document.getElementById('errorMessage')
+  errorMessage.setAttribute('aria-hidden', 'false')
+}
+
 
 const handleSearchEvents = (e) => {
   hideSearchDropDowns();
@@ -206,9 +222,11 @@ const handleSearchEvents = (e) => {
 //   if (e.target.checked) {
 //     console.log(e.target.value)
 //     console.log(e.target.closest(sibling))
-
 //   }
 // }
+
+
+
 const closeSearchBar = (e) => {
   if (!e.target.closest('.search-bar')) {
     hideSearchDropDowns() 
@@ -220,7 +238,7 @@ const hideSearchDropDowns = () => {
   menus.forEach(element => element.setAttribute('aria-hidden', 'true'))
 }
 
-document.getElementById('loginBtn').addEventListener('click', login)
+document.getElementById('loginBtn').addEventListener('click', createUser)
 window.onload = () =>  createHotel();
 window.addEventListener('click', closeSearchBar);
 window.addEventListener('scroll', hideSearchDropDowns);
