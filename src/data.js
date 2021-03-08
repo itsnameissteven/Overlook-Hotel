@@ -9,11 +9,11 @@ const data = {
     const dataTypes = ['rooms', 'bookings', 'customers'];
     return dataTypes.map(this.getData);
   },
-  getUserData(customerID) {
+  getUserData(customerID, callback) {
     return fetch(`http://localhost:3001/api/v1/customers/${customerID}`)
-      .then(response => response.json())
+      .then(data.handleErrors)
       .then(data => data)
-      .catch(err => alert(err))
+      .catch(callback)
   },
   bookRoom(room) {
     return fetch('http://localhost:3001/api/v1/bookings', {

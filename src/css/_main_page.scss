@@ -7,11 +7,19 @@
   background-size: cover;
   background-position:bottom;
   clip-path: polygon(0 0, 100% 0, 100% 80%, 0 100%);
-
+  
   &__title {
+    backface-visibility: hidden;
     @include center(50%, 50%);
     text-align:center;
     
+    &--main {
+      animation: moveInRight 1s ease-out  
+    }
+    &--sub {
+      animation: moveInLeft 1s ease-out  
+
+    }
   }
 }
 

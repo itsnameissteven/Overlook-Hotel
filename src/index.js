@@ -48,15 +48,27 @@ const createHotel = () => {
     // .then(createUser);
 };
 
-const createUser = (id) => {
-  Promise.resolve(data.getUserData(id))
-    .then(response => console.log(response.statusText))
-    .then(value => {
+const createUser = (e) => {
+  e.preventDefault();
+  const userName = document.getElementById('userNameInput').value;
+  
+  Promise.resolve(data.getUserData(parseInt(findUserID(userName)), () => showLoginError()))
+  .then(value => {
       customer = new Customer(value);
+      login();
       displayRooms();
       displayPointsEarned();
-    });
+    })
 };
+
+const login = (e) => {
+  const password = document.getElementById('passwordInput').value;
+  if (password !== 'overlook2021') {
+    showLoginError()
+    return
+  }
+  showMain();
+}
 
 const disableButton = (date) => {
   if(new Date(date) < new Date()) {
@@ -192,18 +204,6 @@ const showMain = () => {
 }
 
 
-const login = (e) => {
-  e.preventDefault();
-  const userName = document.getElementById('userNameInput').value;
-  const password = document.getElementById('passwordInput').value;
-  if (password !== 'overlook2021') {
-    showLoginError()
-    return
-  }
-  createUser(parseInt(findUserID(userName)))
-  showMain();
-}
-
 const showLoginError = () => {
   const errorMessage = document.getElementById('errorMessage')
   errorMessage.setAttribute('aria-hidden', 'false')
@@ -238,7 +238,7 @@ const hideSearchDropDowns = () => {
   menus.forEach(element => element.setAttribute('aria-hidden', 'true'))
 }
 
-document.getElementById('loginBtn').addEventListener('click', login)
+document.getElementById('loginBtn').addEventListener('click', createUser)
 window.onload = () =>  createHotel();
 window.addEventListener('click', closeSearchBar);
 window.addEventListener('scroll', hideSearchDropDowns);
