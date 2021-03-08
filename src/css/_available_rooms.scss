@@ -7,6 +7,18 @@
   // grid-template-rows: 20rem;
   justify-content: center;
 
+  .available-rooms__card__img-container {
+    height: 18rem;
+    width: 100%;
+    overflow: hidden;
+    &__img {
+      height: 100%;
+      border-radius: 1rem;
+    }
+  }
+
+
+  
   &__header {
    width: 100%;
    grid-column: 1/-1;
@@ -15,6 +27,9 @@
 
   &__card {
     border: 1px solid $subtle-tones;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
     width: 28rem;
     height: 40rem;
     padding:1rem;
@@ -24,5 +39,30 @@
       width: 100%;
       border-radius: 1rem;
     }
+    &__book-btn {
+      @include rectangleBtn;
+      align-self: center;
+      width: 90%;
+      margin-bottom: 1rem;
+      // position: absolute;
+      // bottom: 0;
+      // display: block;
+      // margin: 0 auto;
+
+    }
+
   }
 }
+.info {
+  margin-right: 2rem;
+}
+
+.available-rooms__card__img-container {
+    height: 18rem;
+    width: 100%;
+    overflow: hidden;
+    &__image {
+      height: 100%;
+      border-radius: 1rem;
+    }
+  }

@@ -21,3 +21,17 @@
     height:4.5rem;
     width: 4.5rem;
 }
+
+@mixin headerFont {
+  font-family: 'Shrikhand', cursive;
+  font-size: 3rem;
+  letter-spacing: .5rem;
+}
+
+@mixin rectangleBtn {
+  color: #fff;
+  background-color: $accent;
+  border-radius: .6rem;
+  width: 15rem;
+  height: 4rem;
+}

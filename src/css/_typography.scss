@@ -63,27 +63,25 @@ body {
 }
 
 .booked-room__card {
-  font-size: 2rem;
+  font-size: 1.6rem;
 }
 
 .booked-room__header {
-  font-family: 'Shrikhand', cursive;
-  font-size: 3rem;
-  letter-spacing: .5rem;
+  @include headerFont;
 }
 
 .available-rooms__header {
-  font-family: 'Shrikhand', cursive;
-  font-size: 3rem;
-  letter-spacing: .5rem;
+  @include headerFont;
+}
+
+.available-rooms__card {
+  font-size: 1.6rem
 }
 
 // Login page
 
 .login-page__header {
-  font-family: 'Shrikhand', cursive;
-  font-size: 3rem;
-  letter-spacing: .5rem;
+  @include headerFont;
 }
 
 .login-page__form__btn {
@@ -96,3 +94,5 @@ body {
 .error__message {
   font-size: 2.5rem;
 }
+
+//available rooms 

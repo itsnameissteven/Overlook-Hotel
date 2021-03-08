@@ -24,7 +24,7 @@
 .booked-room__card {
   display: grid;
   grid-template-columns: 30rem repeat(2, 1fr);
-  grid-template-rows: repeat(5, 1fr);
+  grid-template-rows: repeat(3, 3rem) auto;
   height: fit-content;
   position: relative;
   padding: 2.2rem;
@@ -51,6 +51,7 @@
 
   &__number-of-beds {
     grid-column: 3;
+    grid-row: 2;
     justify-self: right;
   }
   
@@ -60,12 +61,10 @@
     justify-self: right;
   }
   &__btn {
-    color: #fff;
-    background-color: $accent;
-    border-radius: .6rem;
+    @include rectangleBtn;
     grid-column: 3;
     grid-row: 5;
-    width: 15rem;
+    
     justify-self: right;
   }
 

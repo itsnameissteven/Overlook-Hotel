@@ -92,7 +92,7 @@ const displayRooms = () => {
       <p class="booked-room__card__type"> ${room.roomType}</p>
       <p class="booked-room__card__bed-size">Bed Size ${room.bedSize}</p>
       <p class="booked-room__card__number-of-beds">Beds: ${room.numBeds}</p>
-      <p class="booked-room__card__cost">${room.costPerNight}</p>
+      <p class="booked-room__card__cost">${room.costPerNight} / Night</p>
       <button class="booked-room__card__btn btn" ${disableButton(room.dateBooked)}>Cancel Reservation</button>`; 
     bookedRooms.append(section);
   });
@@ -147,12 +147,12 @@ const displaySearchResults = (e) => {
     results.forEach(result => {
       availableRooms.innerHTML += 
       `<section class="available-rooms__card" data-booking-data=${storeBookingData(data.date, result)} >
-        <img src="./images/room-1.jpg" alt="Your next hotel room" class="available-rooms__card__img">
-        <p class="available-rooms__card__room-number">Room ${result.number}</p>
-        <p class="available-rooms__card__room-type">${result.roomType}</p>
-        <p class="available-rooms__card__bed-size">${result.bedSize}</p>
-        <p class="available-rooms__card__number-of-beds">${result.numBeds}</p>
-        <p class="available-rooms__card__has-bidet">${result.bidet ? "Complimentary Bidet!" : ""}</p>
+        <img src="./images/room-${result.number}.jpg" alt="Your next hotel room" class="available-rooms__card__img">
+        <p class="info available-rooms__card__room-number">Room ${result.number}</p>
+        <p class="info available-rooms__card__room-type">${result.roomType}</p>
+        <p class="info available-rooms__card__bed-size">${result.bedSize}</p>
+        <p class="info available-rooms__card__number-of-beds">${result.numBeds}</p>
+        <p class="info available-rooms__card__has-bidet">${result.bidet ? "Complimentary Bidet!" : ""}</p>
         <button class="available-rooms__card__book-btn book-now btn">Book Now</button>
       </section>`
     });
