@@ -8,7 +8,9 @@ import './images/search_icon.svg';
 import './images/joshua-tree.jpg';
 import './images/room-1.jpg';
 
-const searchButton = document.getElementById('searchBtn')
+const searchButton = document.getElementById('searchBtn');
+const availableRoomsSection = document.getElementById('availableRooms')
+const bookedRooms = document.getElementById('bookedRooms')
 
 let hotel;
 let customer;
@@ -23,16 +25,25 @@ const createUser = () => {
   Promise.resolve(data.getUserData(50))
     .then(value => {
       customer = new Customer(value);
-      displayRooms(customer)
-      displayPointsEarned(customer)
+      displayRooms()
+      displayPointsEarned()
     })
 };
 
-const displayRooms = (customer) => {
+const disableButton = (date) => {
+  if(new Date(date) < new Date()) {
+    return 'disabled';
+  }
+  return
+}
+
+const displayRooms = () => {
   const bookedRooms = document.getElementById('bookedRooms')
+  bookedRooms.innerHTML = '';
   customer.organizeBookingsByDate(hotel).forEach(room => {
     const section = document.createElement('section');
     section.className = 'booked-room__card';
+    section.dataset.bookingID = room.bookingID;
     section.innerHTML = 
       `<img src="./images/room-1.jpg" alt="Hotel room with a bed and desk" class="booked-room__card__img">
       <p class="booked-room__card__room-number">Room ${room.number}</p>
@@ -41,13 +52,12 @@ const displayRooms = (customer) => {
       <p class="booked-room__card__bed-size">Bed Size ${room.bedSize}</p>
       <p class="booked-room__card__number-of-beds">Beds: ${room.numBeds}</p>
       <p class="booked-room__card__cost">${room.costPerNight}</p>
-      <button class="booked-room__card__btn btn">I'm a button</button>` 
+      <button class="booked-room__card__btn btn" ${disableButton(room.dateBooked)}>Cancel Reservation</button>` 
     bookedRooms.append(section);
   });
 };
 
-const displayPointsEarned = (customer) => {
-  
+const displayPointsEarned = () => {
   const pointsEarned = document.getElementById('pointsEarned')
   pointsEarned.innerText = 
     `You've earned ${customer.returnPointsEarned(hotel)} points
@@ -76,36 +86,90 @@ const compileFormData = (elements) => {
 }
 
 const retrieveFormValues = (e) => {
-  e.preventDefault()
   const values = document.getElementById('searchForm');
-  const data = compileFormData(Array.from(values.elements))
-  console.log(hotel.returnAllFilteredResults(data.date, data.roomType, data.bedSize, data.numBeds))
+  const data = compileFormData(Array.from(values.elements));
+  return data;
 }
 
-const displaySearchResults = () => {
-console.log(hotel.returnAllFilteredResults(data.date, data.roomType, data.bedSize, data.numBeds))
+const displaySearchResults = (e) => {
+  e.preventDefault();
+  const data = retrieveFormValues();
+  const results = hotel.returnAllFilteredResults(data.date, 
+    data.roomType, data.bedSize, data.numBeds);
+  const availableRooms = document.getElementById('availableRooms');
+  availableRooms.innerHTML = "";
+  availableRooms.innerHTML =
+  `<h2 class="available-rooms__header"> Rooms available on ${data.date}</h2>`;
+  results.forEach(result => {
+    availableRooms.innerHTML += 
+    `<section class="available-rooms__card" data-booking-data=${storeBookingData(data.date, result)} >
+      <img src="./images/room-1.jpg" alt="Your next hotel room" class="available-rooms__card__img">
+      <p class="available-rooms__card__room-number">Room ${result.number}</p>
+      <p class="available-rooms__card__room-type">${result.roomType}</p>
+      <p class="available-rooms__card__bed-size">${result.bedSize}</p>
+      <p class="available-rooms__card__number-of-beds">${result.numBeds}</p>
+      <p class="available-rooms__card__has-bidet">${result.bidet ? "Complimentary Bidet!" : ""}</p>
+      <button class="available-rooms__card__book-btn book-now btn">Book Now</button>
+    </section>`
+  });
+}
+
+const storeBookingData = (date, data) => {
+  const bookingData = {
+    userID: customer.id,
+    date: date,
+    roomNumber: data.number
+  };
+  return JSON.stringify(bookingData);
+}
+
+const makeReservation = (e) => {
+  if(e.target.className.includes('btn')) {
+    data.bookRoom(JSON.parse(e.target.parentElement.dataset.bookingData))
+      .then(response => response.json())
+      .then(data => {
+          hotel.bookings.push(data.newBooking)
+          displayRooms();
+          displayPointsEarned();
+      })
+      .catch(err => alert(err))
+    e.target.parentElement.remove()
+  }
+}
+
+const cancelReservation = (e) => {
+  if(e.target.className.includes('btn')) {
+    const id = e.target.parentElement.dataset.bookingID
+    data.cancelBooking(id)
+      .then(response => response.json())
+      .then(data =>  data)
+      .catch(err => alert(err))
+  }
+  Promise.resolve(data.getData('bookings')) 
+    .then(values => {
+      hotel.bookings = values;
+      displayRooms();
+      displayPointsEarned();
+    });
 }
 
 
-// const login = (e) => {
-//   e.preventDefault();
-//   const userName = document.getElementById('userNameInput').value;
-//   const password = document.getElementById('passwordInput').value;
-//   const url = `http://localhost:3001/api/v1/customers/${userName.replace('overlook', '')}`
-//   getUserData(url)
-//   setTimeout(() => {
-//     console.log(user)
-//   }, 1000)
-// }
 
-// document.getElementById('loginBtn').addEventListener('click', login)
 
+
+const login = (e) => {
+  e.preventDefault();
+  const userName = document.getElementById('userNameInput').value;
+  const password = document.getElementById('passwordInput').value;
+  const url = `http://localhost:3001/api/v1/customers/${userName.replace('overlook', '')}`
+  getUserData(url)
+  setTimeout(() => {
+    console.log(user)
+  }, 1000)
+}
+
+document.getElementById('loginBtn').addEventListener('click', login)
 window.onload = () =>  createHotel();
-
-searchButton.addEventListener('click', retrieveFormValues)
-
-
-// setTimeout(() => {
-//   console.log(hotel)
-//   console.log(hotel.checkAvailableRooms("2020/01/31"))
-// }, 200)
+searchButton.addEventListener('click', displaySearchResults);
+availableRoomsSection.addEventListener('click', makeReservation);
+bookedRooms.addEventListener('click', cancelReservation)

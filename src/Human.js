@@ -10,7 +10,7 @@ class Human {
     const roomsBooked = this.returnBookingHistory(hotel, id);
     const specificRooms = roomsBooked.map(room => {
       const hotelRoom = hotel.rooms.find(hotelRoom => hotelRoom.number === room.roomNumber)
-      return {...hotelRoom, dateBooked:room.date}
+      return {...hotelRoom, dateBooked:room.date, bookingID: room.id}
     })
     return specificRooms;
   }

@@ -4,8 +4,13 @@ import data from './test-data';
 import Hotel from '../src/Hotel';
 
 describe('Hotel', () => {
-  const overlook = new Hotel("Overlook", data.rooms, 
-    data.bookings, data.customers);
+  let overlook;
+  
+  beforeEach(() => {
+    overlook = new Hotel("Overlook", data.rooms, 
+      data.bookings, data.customers);
+  }) 
+   
 
   it('Should be an instance of Hotel', () => {
     expect(Hotel).to.be.a('function');
@@ -23,13 +28,18 @@ describe('Hotel', () => {
     expect(overlook.checkAvailableRooms("2022/07/78"))
       .to.deep.equal(overlook.rooms);
     overlook.rooms.splice(5, 1);
-    expect(overlook.checkAvailableRooms("2020/02/15"))
+    expect(overlook.checkAvailableRooms("2022/02/15"))
       .to.deep.equal(overlook.rooms);
   });
   
   it('Should let you know if no date was selected', () => {
     expect(overlook.checkAvailableRooms()).to.deep.equal(false)
   });
+
+  it('Should not let you book dates in the past', () => {
+    expect(overlook.checkAvailableRooms('2020/03,10')).to.deep.equal(false)
+    expect(overlook.checkAvailableRooms(new Date).length).to.deep.equal(17)
+  })
 
   it('Should return rooms by type if matched', () => {
     const suites = [
@@ -103,7 +113,7 @@ describe('Hotel', () => {
  
   it('Should return filtered search results for all categories', () => {
     overlook.bookings = data.bookingsForSearch;
-    const search = overlook.returnAllFilteredResults('2020/01/31', ["junior suite","suite"], ["full"], ["2"])
+    const search = overlook.returnAllFilteredResults('2022/01/31', ["junior suite","suite"], ["full"], ["2"])
 
     expect(search).to.deep.equal([
       {
