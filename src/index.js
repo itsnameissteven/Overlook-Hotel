@@ -129,8 +129,8 @@ const makeReservation = (e) => {
       .then(response => response.json())
       .then(data => {
           hotel.bookings.push(data.newBooking)
-          // console.log(hotel.bookings)
-          displayRooms()
+          displayRooms();
+          displayPointsEarned();
       })
       .catch(err => alert(err))
     e.target.parentElement.remove()
@@ -149,6 +149,7 @@ const cancelReservation = (e) => {
     .then(values => {
       hotel.bookings = values;
       displayRooms();
+      displayPointsEarned();
     });
 }
 
