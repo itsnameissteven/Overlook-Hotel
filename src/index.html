@@ -10,7 +10,7 @@
     <title>Overlook Hotel</title>
   </head>
   <body>
-    <form class="search-bar" id="searchForm">
+    <form class="search-bar main-page" id="searchForm" aria-hidden="true">
       <input type="date" class="search-bar__input date" id="dateInput" value="" required>
       <label for="dateInput" class="date-label">date</label>
       <div class="search-bar__input clickable">
@@ -60,24 +60,24 @@
       </div>
       <button class="search-bar__btn btn" id="searchBtn" aria-label="search"></button>
     </form>
-    <header class="header">
+    <header class="header main-page" aria-hidden="true">
       <h1 class="header__title">
         <span class="header__title--main">Overlook</span>
         <span class="header__title--sub">Discover comfort</span>
       </h1>
     </header>
-    <section class="login-page" hidden>
+    <section class="login-page" id="loginPage">
       <form class="login-page__form" id="loginForm">
-        <label for="username">
+        <label for="usernameNameInput">
           <input type="text" name="userName" placeholder="Username" id="userNameInput" required>
         </label>
-        <label for="password">
-          <input type="text" name="password" placeholder="Password" id="passwordInput" required>
+        <label for="passwordInput">
+          <input type="password" name="password" placeholder="Password" id="passwordInput" required>
         </label>
         <input type="submit" placeholder="Login" class="login-page__form__btn btn" id="loginBtn">
       </form>
     </section>
-    <main class="main">
+    <main class="main main-page" aria-hidden="true">
       <div class="hotel-points" >
         <div class="points-container">
           <h2 class="hotel-points__header">Your Points</h2>

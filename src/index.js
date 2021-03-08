@@ -9,6 +9,7 @@ import './images/joshua-tree.jpg';
 import './images/room-1.jpg';
 import './images/room-2.jpg';
 import './images/room-3.jpg';
+import './images/room-4.jpg';
 import './images/room-5.jpg';
 import './images/room-6.jpg';
 import './images/room-7.jpg';
@@ -43,11 +44,11 @@ let customer;
 const createHotel = () => {
   Promise.all(data.getAllHotelData())
     .then(values => hotel = new Hotel("overLook", values[0], values[1], values[2]))
-    .then(createUser);
+    // .then(createUser);
 };
 
-const createUser = () => {
-  Promise.resolve(data.getUserData(50))
+const createUser = (id) => {
+  Promise.resolve(data.getUserData(id))
     .then(value => {
       customer = new Customer(value);
       displayRooms();
@@ -180,18 +181,28 @@ const cancelReservation = (e) => {
 }
 
 
+const findUserID = (userName) => userName.replace("overlook", "");
 
+const unhideMain = () => {
+  const mainElements = document.querySelectorAll('.main-page');
+  document.getElementById('loginPage').setAttribute('aria-hidden', 'true');
+  mainElements.forEach(element => element.setAttribute('aria-hidden', 'false'));
+}
 
 
 const login = (e) => {
   e.preventDefault();
   const userName = document.getElementById('userNameInput').value;
   const password = document.getElementById('passwordInput').value;
-  const url = `http://localhost:3001/api/v1/customers/${userName.replace('overlook', '')}`
-  getUserData(url)
-  setTimeout(() => {
-    console.log(user)
-  }, 1000)
+  console.log(parseInt(findUserID(userName)))
+
+  createUser(parseInt(findUserID(userName)))
+  unhideMain();
+  // const url = `http://localhost:3001/api/v1/customers/${userName.replace('overlook', '')}`
+  // getUserData(url)
+  // setTimeout(() => {
+  //   console.log(user)
+  // }, 1000)
 }
 
 const handleSearchEvents = (e) => {
@@ -206,9 +217,9 @@ const handleSearchEvents = (e) => {
 //   if (e.target.checked) {
 //     console.log(e.target.value)
 //     console.log(e.target.closest(sibling))
-
 //   }
 // }
+
 const closeSearchBar = (e) => {
   if (!e.target.closest('.search-bar')) {
     hideSearchDropDowns() 
