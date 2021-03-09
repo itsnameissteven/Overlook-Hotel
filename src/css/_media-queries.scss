@@ -1,0 +1,20 @@
+@media screen and (max-width: 1000px) {
+  .login-page__img {
+    width:45%;
+  }
+
+  .login-page__form-container {
+    width: 55%;
+  }
+}
+
+
+
+@media screen and (max-width: 750px) {
+  .login-page__img {
+    display: none;
+  }
+  .login-page__form-container {
+    width: 100%;
+  }
+}
