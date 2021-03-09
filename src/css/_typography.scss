@@ -3,14 +3,12 @@ body {
   font-weight: 400;
   line-height: 1.7;
   color:$text-primary;
-  // font-size: 1.6rem;
 }
 
 .header__title {
   color:$text-secondary;
   text-transform: uppercase;
   font-family: 'Shrikhand', cursive;
-  // letter-spacing: 1;
 
   &--main{
     display: block;
@@ -32,7 +30,6 @@ body {
   font-size: 1.1rem;
 
   &__header--sub{
-    // display: block;
     font-weight: 200;
     color: $subtle-tones;
   }
@@ -51,6 +48,7 @@ body {
   }
   &__points-earned {
     font-size: 1.7rem;
+    font-weight: 700;
     line-height: 2;
   }
 
@@ -62,32 +60,38 @@ body {
   }
 }
 
-
 .booked-room__card {
-  font-size: 2rem;
+  font-size: 1.4rem;
 }
 
 .booked-room__header {
-  font-family: 'Shrikhand', cursive;
-  font-size: 3rem;
-  letter-spacing: .5rem;
+  @include headerFont;
 }
 
 .available-rooms__header {
-  font-family: 'Shrikhand', cursive;
-  font-size: 3rem;
-  letter-spacing: .5rem;
+  @include headerFont;
+}
+
+.available-rooms__card {
+  font-size: 1.3rem;
+  font-weight: 700;
 }
 
 // Login page
 
 .login-page__header {
-  font-family: 'Shrikhand', cursive;
-  font-size: 3rem;
-  letter-spacing: .5rem;
+  @include headerFont;
 }
 
 .login-page__form__btn {
   font-size: 1.6rem;
   font-weight: 700;
 }
+
+//error message
+
+.user-msg__header {
+  font-size: 1.8rem;
+}
+
+//available rooms 

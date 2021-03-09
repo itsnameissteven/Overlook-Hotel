@@ -1,0 +1,169 @@
+@media screen and (max-width: 1200px) {
+  .booked-room__card__img {
+    width: 100%;
+  }
+
+  .hotel-points {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: fit-content;
+  }
+
+  .hotel-points__img {
+    display: none
+  }
+
+  .hotel-points__tag-line {
+    position: unset;
+    display: inline-block;
+    text-align: center;
+  }
+
+  .points-container {
+    position: unset;
+    margin-bottom: 3rem;
+  }
+
+  .booked-room__card {
+    grid-template-columns: 40% repeat(2, 1fr);
+  }
+
+  .search-bar {
+    width:90%;
+    min-width: 70rem;
+  }
+
+  .login-page__img {
+    width:45%;
+  }
+
+  .login-page__form-container {
+    width: 55%;
+  }
+
+  .error {
+    width: 60%
+  }
+
+  .header {
+    clip-path: unset;
+  }
+
+  .header__title--main {
+    font-size: 6vw;
+    letter-spacing: 2rem;
+  }
+
+  .header__title--sub {
+    font-size: 3.5vw;
+  }
+
+  .booked-room__img__container {
+    display: none;
+  }
+
+  .booked-room__container {
+    width: 100%;
+    height: fit-content;
+  }
+}
+
+
+
+@media screen and (max-width: 750px) {
+  body {
+    padding: 0;
+  }
+
+  .drop-down-menu {
+    width: 80%;
+    max-width: 30rem;
+    left: 18%;
+  }
+
+  .booked-room__card {
+    grid-template-rows: repeat(3, 2rem) auto;
+    font-size: 1.3rem;
+  }
+
+  .booked-room__header {
+    display: block;
+    margin: 3rem auto;
+  }
+
+  .booked-room__card__btn {
+    font-size: 1.2rem;
+    width: 8rem
+  }
+
+  .search-bar {
+    width:100%;
+    min-width: 70rem;
+    top: 0;
+    border-radius: unset;
+    min-width: unset;
+  }
+
+  .search-bar__input__header--sub {
+    display: none;
+  }
+
+  .search-bar__input {
+    padding: 1rem;
+  }
+
+  .login-page__img {
+    display: none;
+  }
+
+  .login-page__form-container {
+    width: 100%;
+  }
+
+  .search-bar__btn {
+    height: 3rem;
+    width: 3rem;
+  }
+
+  .user-msg {
+    width: 90%
+  }
+
+  .exit-btn {
+    height: 3rem;
+    width: 3rem;
+  }
+
+  .date {
+    width: 60rem;
+    padding:0;
+  }
+
+  .available-rooms {
+    grid-template-columns: repeat(2, 1fr);
+    grid-gap: unset;
+
+    &__card {
+      width: 19rem;
+      padding: 3px;
+      height:30rem;
+      font-size: 1.1rem;
+    }
+
+    &__img {
+      height: 15rem
+    }
+
+    &__header {
+      font-size: 2rem;
+    }
+  }
+
+  .hotel-img-container {
+    height: 13rem;
+  }
+
+  
+}

@@ -1,0 +1,21 @@
+.user-msg {
+  @include flex;
+  justify-content: center;
+  position: fixed;
+  top: 10rem;
+  height: 25rem;
+  width: 40%;
+  background-color: #fff;
+  left: 50%;
+  transform: translate(-50%);
+  z-index: 20;
+  border-radius: 3rem;
+  border: 1px solid $subtle-tones;
+}
+
+.exit-btn {
+  position: absolute;
+  top: 2rem;
+  right: 2rem;
+  @include roundButton('../images/exit.svg');
+}

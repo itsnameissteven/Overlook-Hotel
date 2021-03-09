@@ -7,6 +7,7 @@
   background-size: cover;
   background-position:bottom;
   clip-path: polygon(0 0, 100% 0, 100% 80%, 0 100%);
+
   
   &__title {
     backface-visibility: hidden;
@@ -16,30 +17,34 @@
     &--main {
       animation: moveInRight 1s ease-out  
     }
+
     &--sub {
       animation: moveInLeft 1s ease-out  
-
     }
   }
 }
 
 .hotel-points {
   position: relative;
-  height: 60rem;
+  min-height: fit-content;
+  height: 80rem;
+  width: 100%;
   text-align: right;
   margin-top: 8rem;
-  // padding-right: 8%;
+
+  &__name {
+     margin-bottom: 1rem;
+  }
 
   &__header {
-    margin-bottom: 2rem;
+    margin-bottom: 1.5rem;
   }
 
   &__img {
     @include center(10%, 15%);
     transform: translate(0,0);
     background-color: linear-gradient(0deg, rgba(0, 0, 0, 0.568), rgba(168, 168, 168, 0.267));
-    // width: 60%;  
-    width: 80rem;
+    width: 70%;
     border-radius: 6px;
   }
 
@@ -57,7 +62,6 @@
   display: flex;
   flex-direction: column;
   justify-content: center;
-  // align-items: flex-start;
   width: 30rem;
   height: 30rem;
   right: 8%;
@@ -67,9 +71,9 @@
   border-radius: 50% 20% 50% 40%
 }
 
-.hidden {
-  display: none;
-}
+// .hidden {
+//   display: none;
+// }
 
 [aria-hidden="true"] {
   display: none;

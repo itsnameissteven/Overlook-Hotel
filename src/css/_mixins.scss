@@ -11,3 +11,35 @@
   left: $left;
   transform: translate(-50%, -50%);
 }
+
+@mixin hoverColor ($baseColor) {
+    background-color: $baseColor;
+    &:hover,
+    &:focus {
+      background-color: darken($baseColor, 15%)
+    }
+}
+
+@mixin roundButton ($img) {
+  @include hoverColor($accent);
+  border-radius: 100%;
+    background-image: url($img);
+    background-position: center;
+    background-repeat: no-repeat;
+    height:4.5rem;
+    width: 4.5rem;
+}
+
+@mixin headerFont {
+  font-family: 'Shrikhand', cursive;
+  font-size: 3rem;
+  letter-spacing: .5rem;
+}
+
+@mixin rectangleBtn {
+  color: #fff;
+  @include hoverColor($accent);
+  border-radius: .6rem;
+  width: 15rem;
+  height: 4rem;
+}
