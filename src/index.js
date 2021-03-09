@@ -152,7 +152,7 @@ const displaySearchResults = (e) => {
     `<h2 class="available-rooms__header"> ${header} </h2>`;
     results.forEach(result => {
       availableRooms.innerHTML += 
-      `<section class="available-rooms__card" data-booking-data=${storeBookingData(data.date, result)} >
+      `<section class="available-rooms__card">
         <div class="hotel-img-container">
           <img src="./images/room-${result.number}.jpg" alt="Your next hotel room" class="available-rooms__card__img">
         </div>
@@ -164,7 +164,7 @@ const displaySearchResults = (e) => {
           <p class="info-center available-rooms__card__has-bidet">${result.bidet ? "Complimentary Bidet!" : ""}</p>
           <p class="info-center available-rooms__card__cost-per-night">$${result.costPerNight} / Per Night</p>
         </div>
-        <button class="available-rooms__card__book-btn book-now btn">Book Now</button>
+        <button class="available-rooms__card__book-btn book-now btn" data-booking-data=${storeBookingData(data.date, result)}>Book Now</button>
       </section>`
     });
     document.location.href = '#availableRooms';
@@ -205,12 +205,9 @@ const storeBookingData = (date, data) => {
 
 const makeReservation = (e) => {
   if(e.target.className.includes('btn')) {
-    const dataSet = e.target.parentElement.dataset.bookingData
-    // console.log(dataSet)
-    data.bookRoom(JSON.parse(dataSet))
+    data.bookRoom(JSON.parse(e.target.dataset.bookingData))
       .then(data.handleErrors)
       .then(data => {
-          // console.log(data)
           hotel.bookings.push(data.newBooking)
           displayRooms();
           displayPointsEarned();
@@ -222,15 +219,17 @@ const makeReservation = (e) => {
   }
 }
 
+const updateBookings = () => {
+  Promise.resolve(data.getData('bookings')) 
+    .then(values => {
+      hotel.bookings = values;
+      displayRooms();
+      displayPointsEarned();
+    });
+}
+
+
 const cancelReservation = (e) => {
-  const updateBookings = () => {
-    Promise.resolve(data.getData('bookings')) 
-      .then(values => {
-        hotel.bookings = values;
-        displayRooms();
-        displayPointsEarned();
-      });
-  }
   if(e.target.className.includes('btn')) {
     const id = e.target.parentElement.dataset.bookingID;
     data.cancelBooking(id)

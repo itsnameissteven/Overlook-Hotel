@@ -17,5 +17,5 @@
   position: absolute;
   top: 2rem;
   right: 2rem;
-  @include roundButton('../images/exit.svg')
+  @include roundButton('../images/exit.svg');
 }

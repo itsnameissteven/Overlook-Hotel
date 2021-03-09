@@ -127,7 +127,7 @@
     width: 3rem;
   }
 
-  .error {
+  .user-msg {
     width: 90%
   }
 
@@ -155,9 +155,15 @@
     &__img {
       height: 15rem
     }
+
+    &__header {
+      font-size: 2rem;
+    }
   }
 
   .hotel-img-container {
     height: 13rem;
   }
+
+  
 }
