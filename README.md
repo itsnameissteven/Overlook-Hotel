@@ -3,7 +3,21 @@
 ## Contributers
 * [Steven Mancine](https://github.com/itsnameissteven)
 
-## About This Project
+## Table of Contents 
+
+- [About the Project](#about-the-project)
+- [Project Goals](#project-goals)
+- [Feature](#features)
+  - [User Login](#user-login)
+  - [Dashboard](#dashboard)
+  - [Search](#search)
+  - [Cancelling Reservations](#cancelling-reservations)
+- [Accessibility](#accessibility)
+- [Future Considerations](#future-considerations)
+- [Technologies Used](#technologies-used)
+- [Contact](#contact)
+
+## About The Project
 Overlook Hotel is a web app based on a fictional hotel. Users have to ability to view previously booked rooms, and book a room for a future date.   
 
 ## Project Goals 
@@ -58,5 +72,8 @@ This is fully accessible with the use of a keyboard. Use the tab key to travel t
 ## Contact
 
 
+[<img src="https://img.shields.io/badge/LinkedIn-steven--mancine-informational?style=for-the-badge&labelColor=black&logo=linkedin&logoColor=0077b5&&color=0FBBD6"/>][linkedin3]
+[<img src="https://img.shields.io/badge/Github-itsnameissteven-informational?style=for-the-badge&labelColor=black&logo=github&color=8B0BD5"/>][github3]
+<!--Personal Definitions -->
 [linkedin3]: https://www.linkedin.com/in/steven-mancine-13509521/
 [github3]: https://github.com/itsnameissteven
