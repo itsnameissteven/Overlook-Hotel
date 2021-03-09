@@ -23,11 +23,16 @@
     height: 100%;
     border-radius: 100px;
     border: none;
-    &:hover,
-    &:focus {
+    overflow: hidden;
+    // box-shadow: 0 0 0 6px rgba(0, 0, 0, 0.363);
+    &:hover {
       // box-shadow: 0 0 0 6px rgb(255, 255, 255);
       background-color: rgba(194, 194, 194, 0.507);
+    }
+    &:focus {
       outline: none;
+      box-shadow: 0 0 20px 2px rgba(0, 0, 0, 0.36);
+      background-color: white;
     }
 
     &__header {

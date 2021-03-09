@@ -29,7 +29,8 @@
 }
 
 .login-page__form__btn {
-  background-color: #4CAEA6;
+  @include hoverColor(#4CAEA6)
+  // background-color: #4CAEA6;
   color: white;
 }
 
