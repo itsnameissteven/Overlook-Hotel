@@ -1,4 +1,8 @@
 @media screen and (max-width: 1000px) {
+  .search-bar {
+    width:90%;
+    min-width: 70rem;
+  }
   .login-page__img {
     width:45%;
   }
@@ -6,15 +10,63 @@
   .login-page__form-container {
     width: 55%;
   }
+  .error {
+    width: 60%
+  }
+
+  .header__title--main {
+    font-size: 6vw;
+  }
+  .header__title--sub {
+    font-size: 3.5vw;
+  }
 }
 
 
 
 @media screen and (max-width: 750px) {
+  body {
+    padding: 0;
+  }
+
+  .search-bar {
+    width:100%;
+    min-width: 70rem;
+    top: 0;
+    border-radius: unset;
+    min-width: unset;
+
+  }
+  .search-bar__input__header--sub {
+    display: none;
+  }
+
+  .search-bar__input {
+    padding: 1rem;
+  }
+
   .login-page__img {
     display: none;
   }
+
   .login-page__form-container {
     width: 100%;
+  }
+
+  .search-bar__btn {
+    height: 3rem;
+    width: 3rem;
+  }
+
+  .error {
+    width: 90%
+  }
+  .exit-btn {
+    height: 3rem;
+    width: 3rem;
+  }
+  .date {
+    width: 60rem;
+    padding:0;
   }
 }

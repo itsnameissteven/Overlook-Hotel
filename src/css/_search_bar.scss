@@ -6,8 +6,9 @@
   left: 50%;
   transform: translate(-50%);
   height: 7rem;
-  // min-height: fit-content;
+  
   width:80%;
+  max-width: 95rem;
   min-width: 75rem;
   background-color: $text-secondary;
   border-radius: 5rem;
