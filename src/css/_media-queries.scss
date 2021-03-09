@@ -1,4 +1,12 @@
 @media screen and (max-width: 1000px) {
+  .booked-room__card__img {
+    width: 100%;
+  }
+
+  .booked-room__card {
+    grid-template-columns: 40% repeat(2, 1fr);
+  }
+
   .search-bar {
     width:90%;
     min-width: 70rem;
@@ -16,9 +24,23 @@
 
   .header__title--main {
     font-size: 6vw;
+    letter-spacing: 2rem;
   }
   .header__title--sub {
     font-size: 3.5vw;
+  }
+
+  .booked-room__img__container {
+    display: none;
+  }
+
+  // .booked-room__img{ 
+  //   display: hidden;
+  // }
+
+  .booked-room__container {
+    width: 100%;
+    height: fit-content;
   }
 }
 
@@ -27,6 +49,17 @@
 @media screen and (max-width: 750px) {
   body {
     padding: 0;
+  }
+
+  .drop-down-menu {
+    width: 80%;
+    max-width: 30rem;
+    left: 18%;
+  }
+
+  .booked-room__header {
+    display: block;
+    margin: 3rem auto;
   }
 
   .search-bar {
