@@ -31,7 +31,7 @@ const data = {
   },
   handleErrors(response) {
     if (!response.ok) {
-      throw Error(response.statusText);
+      throw Error('Oops! Something went wrong please try again.');
     }
     return response.json()
   }

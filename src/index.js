@@ -40,7 +40,7 @@ const searchButton = document.getElementById('searchBtn');
 const availableRoomsSection = document.getElementById('availableRooms');
 const bookedRooms = document.getElementById('bookedRooms');
 const searchForm = document.getElementById('searchForm');
-const bookingErrorMessage = document.getElementById('bookingErrorMessage');
+const userMessage = document.getElementById('userMessage');
 
 let hotel;
 let customer;
@@ -168,8 +168,15 @@ const displaySearchResults = (e) => {
     searchForm.reset();
     return; 
   }
-  toggleHidden(bookingErrorMessage, 'false');
+  displayUserMessage('Please enter a valid date.');
 }
+
+const displayUserMessage = (content) => {
+  const message = document.getElementById('message');
+  message.innerText = content;
+  toggleHidden(userMessage, 'false');
+}
+
 
 let fixDate = (date) => {
     const splitDate = date.split('/');
@@ -195,12 +202,17 @@ const storeBookingData = (date, data) => {
 
 const makeReservation = (e) => {
   if(e.target.className.includes('btn')) {
-    data.bookRoom(JSON.parse(e.target.parentElement.dataset.bookingData))
-      .then(response => response.json())
+    const dataSet = e.target.parentElement.dataset.bookingData
+    // console.log(dataSet)
+    data.bookRoom(JSON.parse(dataSet))
+      .then(data.handleErrors)
       .then(data => {
+          // console.log(data)
           hotel.bookings.push(data.newBooking)
           displayRooms();
           displayPointsEarned();
+          displayUserMessage(`Booking for ${fixDate(data.newBooking.date)} complete.
+          Confirmation number - ${data.newBooking.id}`)
       })
       .catch(err => alert(err));
     e.target.parentElement.remove();
@@ -208,19 +220,21 @@ const makeReservation = (e) => {
 }
 
 const cancelReservation = (e) => {
+  const updateBookings = () => {
+    Promise.resolve(data.getData('bookings')) 
+      .then(values => {
+        hotel.bookings = values;
+        displayRooms();
+        displayPointsEarned();
+      });
+  }
   if(e.target.className.includes('btn')) {
     const id = e.target.parentElement.dataset.bookingID;
     data.cancelBooking(id)
-      .then(response => response.json())
-      .then(data =>  data)
+      .then(data.handleErrors)
+      .then(updateBookings)
       .catch(err => alert(err));
   }
-  Promise.resolve(data.getData('bookings')) 
-    .then(values => {
-      hotel.bookings = values;
-      displayRooms();
-      displayPointsEarned();
-    });
 }
 
 
@@ -265,7 +279,7 @@ const hideSearchDropDowns = () => {
   menus.forEach(element => toggleHidden(element));
 }
 
-const hideErrorMessage = () => toggleHidden(bookingErrorMessage);
+const hideErrorMessage = () => toggleHidden(userMessage);
 
 const hideOnScroll = () => {
   hideErrorMessage();
