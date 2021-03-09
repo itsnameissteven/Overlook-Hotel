@@ -24,7 +24,6 @@
   .points-container {
     position: unset;
     margin-bottom: 3rem;
-    // justify-self:center;
   }
 
   .booked-room__card {
@@ -35,6 +34,7 @@
     width:90%;
     min-width: 70rem;
   }
+
   .login-page__img {
     width:45%;
   }
@@ -42,6 +42,7 @@
   .login-page__form-container {
     width: 55%;
   }
+
   .error {
     width: 60%
   }
@@ -50,6 +51,7 @@
     font-size: 6vw;
     letter-spacing: 2rem;
   }
+
   .header__title--sub {
     font-size: 3.5vw;
   }
@@ -57,10 +59,6 @@
   .booked-room__img__container {
     display: none;
   }
-
-  // .booked-room__img{ 
-  //   display: hidden;
-  // }
 
   .booked-room__container {
     width: 100%;
@@ -85,6 +83,7 @@
     grid-template-rows: repeat(3, 2rem) auto;
     font-size: 1.3rem;
   }
+
   .booked-room__header {
     display: block;
     margin: 3rem auto;
@@ -101,8 +100,8 @@
     top: 0;
     border-radius: unset;
     min-width: unset;
-
   }
+
   .search-bar__input__header--sub {
     display: none;
   }
@@ -127,10 +126,12 @@
   .error {
     width: 90%
   }
+
   .exit-btn {
     height: 3rem;
     width: 3rem;
   }
+
   .date {
     width: 60rem;
     padding:0;
@@ -151,10 +152,8 @@
       height: 15rem
     }
   }
+
   .hotel-img-container {
     height: 13rem;
   }
-
- 
-
 }

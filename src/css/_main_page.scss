@@ -17,9 +17,9 @@
     &--main {
       animation: moveInRight 1s ease-out  
     }
+
     &--sub {
       animation: moveInLeft 1s ease-out  
-
     }
   }
 }
@@ -67,9 +67,9 @@
   border-radius: 50% 20% 50% 40%
 }
 
-.hidden {
-  display: none;
-}
+// .hidden {
+//   display: none;
+// }
 
 [aria-hidden="true"] {
   display: none;

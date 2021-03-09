@@ -32,7 +32,6 @@ body {
   &:hover {
     transform: translateY(-.3rem);
     box-shadow: 0 1rem 2rem rgba(0, 0, 0, .2);
-    // filter: brightness(85%);
 
     &:after {
       transform: scaleX(1.4) scaleY(1.6);
@@ -45,11 +44,6 @@ body {
     transform: translateY(-.1rem);
     box-shadow: 0 .5rem 1rem rgba(0, 0, 0, .2);
   }
-  &:focus {
-    // box-shadow: 0 0 0 2px rgb(0, 0, 0);
-    // filter: brightness(85%)
-  }
-
 }
 
 ::-webkit-scrollbar {
