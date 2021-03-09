@@ -88,9 +88,9 @@ const displayRooms = () => {
     section.innerHTML = 
       `<img src="./images/room-${room.number}.jpg" alt="Hotel room with a bed and desk" class="booked-room__card__img">
       <p class="booked-room__card__room-number">Room ${room.number}</p>
-      <p class="booked-room__card__date-booked">${room.dateBooked}</p>
-      <p class="booked-room__card__type"> ${room.roomType}</p>
-      <p class="booked-room__card__bed-size">Bed Size ${room.bedSize}</p>
+      <p class="booked-room__card__date-booked">${fixDate(room.dateBooked)}</p>
+      <p class="booked-room__card__type"> ${capitalizeWords(room.roomType)}</p>
+      <p class="booked-room__card__bed-size">Bed Size ${capitalizeWords(room.bedSize)}</p>
       <p class="booked-room__card__number-of-beds">Beds: ${room.numBeds}</p>
       <p class="booked-room__card__cost">${room.costPerNight} / Night</p>
       <button class="booked-room__card__btn btn" ${disableButton(room.dateBooked)}>Cancel Reservation</button>`; 
@@ -138,7 +138,7 @@ const displaySearchResults = (e) => {
   const results = hotel.returnAllFilteredResults(data.date, 
     data.roomType, data.bedSize, data.numBeds);
   const header = results.length === 0 ? 
-    `Sorry no rooms match your search criteria for ${data.date}. Please try again` : `Rooms available on ${data.date}`
+    `Sorry no rooms match your search criteria for ${fixDate(data.date)}. Please try again.` : `Rooms available on ${fixDate(data.date)}`
   if(results) {
     const availableRooms = document.getElementById('availableRooms');
     availableRooms.innerHTML = "";
@@ -151,9 +151,9 @@ const displaySearchResults = (e) => {
           <img src="./images/room-${result.number}.jpg" alt="Your next hotel room" class="available-rooms__card__img">
         </div>
         <p class="info available-rooms__card__room-number">Room ${result.number}</p>
-        <p class="info available-rooms__card__room-type">${result.roomType}</p>
-        <p class="info available-rooms__card__bed-size">${result.bedSize}</p>
-        <p class="info available-rooms__card__number-of-beds">${result.numBeds}</p>
+        <p class="info available-rooms__card__room-type">${capitalizeWords(result.roomType)}</p>
+        <p class="info available-rooms__card__bed-size">Bed Size - ${capitalizeWords(result.bedSize)}</p>
+        <p class="info available-rooms__card__number-of-beds">Total Beds - ${result.numBeds}</p>
         <p class="info available-rooms__card__has-bidet">${result.bidet ? "Complimentary Bidet!" : ""}</p>
         <button class="available-rooms__card__book-btn book-now btn">Book Now</button>
       </section>`
@@ -162,6 +162,19 @@ const displaySearchResults = (e) => {
     return; 
   }
   bookingErrorMessage.setAttribute('aria-hidden', 'false');
+}
+
+let fixDate = (date) => {
+    const splitDate = date.split('/');
+    splitDate.push(splitDate.shift())
+    const joined = splitDate.join('/')
+    return joined
+}
+
+const capitalizeWords = (string) => {
+  let words = string.split(' ');
+  let capitalized = words.map( word => word.charAt(0).toUpperCase() + word.slice(1, word.length))
+  return capitalized.join(' ');
 }
 
 const storeBookingData = (date, data) => {
