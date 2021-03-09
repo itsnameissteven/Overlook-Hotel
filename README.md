@@ -11,7 +11,7 @@
   - [User Login](#user-login)
   - [Dashboard](#dashboard)
   - [Search](#search)
-  - [Cancelling Reservations](#cancelling-reservations)
+  - [Canceling Reservations](#canceling-reservations)
 - [Accessibility](#accessibility)
 - [Responsive Design](#responsive-design)
 - [Future Considerations](#future-considerations)
@@ -39,7 +39,7 @@ The overlook API hold data for 50 users.
 
 ### Dashboard
 Upon logging in the user is able to see how many points they have earned and the amount of money they have spent on all bookings.  Users can also view a list of all bookings past and upcoming.
-<img width="1439" alt="Screen Shot 2021-03-09 at 2 14 26 PM" src="https://user-images.githubusercontent.com/72312636/110545203-fd47ab80-80e9-11eb-83d8-8afb497a70d2.png">
+<img width="1500" alt="Screen Shot 2021-03-09 at 2 14 26 PM" src="https://user-images.githubusercontent.com/72312636/110545203-fd47ab80-80e9-11eb-83d8-8afb497a70d2.png">
 ![your bookings](https://user-images.githubusercontent.com/72312636/110545262-16505c80-80ea-11eb-95fe-3ba4d205df3d.gif)
 
 ### Search 
@@ -52,7 +52,7 @@ If a customer would like to cancel upcoming reservations they have the ability t
 ## Accessibility
 This is fully accessible with the use of a keyboard. Use the tab key to travel to each relevant section. The space bar must be used to check boxes in the search bar.
 
-## Respsonsive Design 
+## Responsive Design 
 Responsive design was considered for desktop, tablet and mobile view.
 
 ![mobile-view](https://user-images.githubusercontent.com/72312636/110545778-d5a51300-80ea-11eb-9f39-e52ba59ca025.gif)
