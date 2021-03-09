@@ -27,12 +27,10 @@
 .hotel-points {
   position: relative;
   min-height: fit-content;
-  // display:inline-block;
   height: 80rem;
   width: 100%;
   text-align: right;
   margin-top: 8rem;
-  border: $test-border;
 
   &__header {
     margin-bottom: 2rem;
