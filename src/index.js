@@ -50,6 +50,9 @@ const createHotel = () => {
     .then(values => hotel = new Hotel("overLook", values[0], values[1], values[2]));
 };
 
+const toggleHidden = (element, hidden = 'true') => element.setAttribute('aria-hidden', hidden);
+
+
 const createUser = (e) => {
   e.preventDefault();
   const userName = document.getElementById('userNameInput').value;
@@ -159,11 +162,11 @@ const displaySearchResults = (e) => {
         <button class="available-rooms__card__book-btn book-now btn">Book Now</button>
       </section>`
     });
-    document.location.href = '#availableRooms' ;
-    searchForm.reset()
+    document.location.href = '#availableRooms';
+    searchForm.reset();
     return; 
   }
-  bookingErrorMessage.setAttribute('aria-hidden', 'false');
+  toggleHidden(bookingErrorMessage, 'false');
 }
 
 let fixDate = (date) => {
@@ -223,22 +226,23 @@ const findUserID = (userName) => userName.replace("overlook", "");
 
 const showMain = () => {
   const mainElements = document.querySelectorAll('.main-page');
-  document.getElementById('loginPage').setAttribute('aria-hidden', 'true');
-  mainElements.forEach(element => element.setAttribute('aria-hidden', 'false'));
+  const loginPage = document.getElementById('loginPage')
+  toggleHidden(loginPage)
+  mainElements.forEach(element => toggleHidden(element, 'false'));
 }
 
 
 const showLoginError = () => {
   const errorMessage = document.getElementById('errorMessage')
-  errorMessage.setAttribute('aria-hidden', 'false')
+  toggleHidden(errorMessage, 'false')
 }
 
 
 const handleSearchEvents = (e) => {
   hideSearchDropDowns();
   if (!!e.target.closest('.clickable')) {
-    const target = e.target.closest('.clickable').childNodes[3]
-    target.setAttribute('aria-hidden', 'false')
+    const target = e.target.closest('.clickable').childNodes[3];
+    toggleHidden(target, 'false');
   }
 }
 
@@ -247,23 +251,31 @@ const handleSearchEvents = (e) => {
 
 const closeSearchBar = (e) => { 
   if(e.target.className.includes('exit-btn')) {
-    hideErrorMessage()
+    hideErrorMessage();
   }
   if (!e.target.closest('.search-bar')) {
-    hideSearchDropDowns() 
+    hideSearchDropDowns() ;
   }
 }
 
 const hideSearchDropDowns = () => {
-  const menus = document.querySelectorAll('.drop-down-menu')
-  menus.forEach(element => element.setAttribute('aria-hidden', 'true'))
+  const menus = document.querySelectorAll('.drop-down-menu');
+  menus.forEach(element => toggleHidden(element));
 }
 
-const hideErrorMessage = () => bookingErrorMessage.setAttribute('aria-hidden', 'true')
+const hideErrorMessage = () => toggleHidden(bookingErrorMessage);
 
 const hideOnScroll = () => {
   hideErrorMessage();
   hideSearchDropDowns();
+}
+
+const tabThroughSearch = (e) => {
+  if (e.keyCode === 13) {
+    hideSearchDropDowns();
+    const target = e.target.closest('.clickable').childNodes[3]
+    toggleHidden(target, 'false')
+  }
 }
 
 document.getElementById('loginBtn').addEventListener('click', createUser)
@@ -272,13 +284,7 @@ window.addEventListener('click', closeSearchBar);
 window.addEventListener('scroll', hideOnScroll);
 searchButton.addEventListener('click', displaySearchResults);
 availableRoomsSection.addEventListener('click', makeReservation);
-bookedRooms.addEventListener('click', cancelReservation)
-searchForm.addEventListener('click', handleSearchEvents)
-searchForm.addEventListener('keydown', (e) => {
-  if (e.keyCode == 13) {
-    hideSearchDropDowns();
-    const target = e.target.closest('.clickable').childNodes[3]
-    target.setAttribute('aria-hidden', 'false')
-  }
-})
+bookedRooms.addEventListener('click', cancelReservation);
+searchForm.addEventListener('click', handleSearchEvents);
+searchForm.addEventListener('keydown', tabThroughSearch);
 
