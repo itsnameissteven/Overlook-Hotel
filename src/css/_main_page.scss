@@ -7,6 +7,7 @@
   background-size: cover;
   background-position:bottom;
   clip-path: polygon(0 0, 100% 0, 100% 80%, 0 100%);
+
   
   &__title {
     backface-visibility: hidden;
@@ -25,10 +26,13 @@
 
 .hotel-points {
   position: relative;
-  height: 60rem;
+  min-height: fit-content;
+  // display:inline-block;
+  height: 80rem;
+  width: 100%;
   text-align: right;
   margin-top: 8rem;
-  // padding-right: 8%;
+  border: $test-border;
 
   &__header {
     margin-bottom: 2rem;
@@ -38,7 +42,7 @@
     @include center(10%, 15%);
     transform: translate(0,0);
     background-color: linear-gradient(0deg, rgba(0, 0, 0, 0.568), rgba(168, 168, 168, 0.267));
-    width: 80rem;
+    width: 70%;
     border-radius: 6px;
   }
 

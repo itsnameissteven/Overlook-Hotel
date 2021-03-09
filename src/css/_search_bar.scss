@@ -74,6 +74,8 @@
   width:24%;
   border-radius: 2rem;
   box-shadow: 0 1rem 2rem (rgba(0, 0, 0, 0.2));
+  animation: dropDown 400ms ease-out;
+  transform-origin: top;
 }
 
 

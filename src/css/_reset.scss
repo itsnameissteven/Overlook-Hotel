@@ -44,6 +44,10 @@ body {
     transform: translateY(-.1rem);
     box-shadow: 0 .5rem 1rem rgba(0, 0, 0, .2);
   }
+  &:focus {
+    box-shadow: 0 0 0 2pt red;
+    filter: brightness(85%)
+  }
 
 }
 

@@ -1,6 +1,30 @@
-@media screen and (max-width: 1000px) {
+@media screen and (max-width: 1200px) {
   .booked-room__card__img {
     width: 100%;
+  }
+
+  .hotel-points {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: fit-content;
+  }
+
+  .hotel-points__img {
+    display: none
+  }
+
+  .hotel-points__tag-line {
+    position: unset;
+    display: inline-block;
+    text-align: center;
+  }
+
+  .points-container {
+    position: unset;
+    margin-bottom: 3rem;
+    // justify-self:center;
   }
 
   .booked-room__card {
@@ -57,9 +81,18 @@
     left: 18%;
   }
 
+  .booked-room__card {
+    grid-template-rows: repeat(3, 2rem) auto;
+    font-size: 1.3rem;
+  }
   .booked-room__header {
     display: block;
     margin: 3rem auto;
+  }
+
+  .booked-room__card__btn {
+    font-size: 1.2rem;
+    width: 10rem
   }
 
   .search-bar {

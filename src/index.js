@@ -84,6 +84,7 @@ const displayRooms = () => {
   customer.organizeBookingsByDate(hotel).forEach(room => {
     const section = document.createElement('section');
     section.className = 'booked-room__card';
+    section.tabIndex ="0"
     section.dataset.bookingID = room.bookingID;
     section.innerHTML = 
       `<img src="./images/room-${room.number}.jpg" alt="Hotel room with a bed and desk" class="booked-room__card__img">
@@ -240,12 +241,6 @@ const handleSearchEvents = (e) => {
   }
 }
 
-// const changeInnerText = (e) => {
-//   if (e.target.checked) {
-//     console.log(e.target.value)
-//     console.log(e.target.closest(sibling))
-//   }
-// }
 
 
 
@@ -278,3 +273,11 @@ searchButton.addEventListener('click', displaySearchResults);
 availableRoomsSection.addEventListener('click', makeReservation);
 bookedRooms.addEventListener('click', cancelReservation)
 searchForm.addEventListener('click', handleSearchEvents)
+searchForm.addEventListener('keydown', (e) => {
+  if (e.keyCode == 13) {
+    hideSearchDropDowns();
+    const target = e.target.closest('.clickable').childNodes[3]
+    target.setAttribute('aria-hidden', 'false')
+  }
+})
+
