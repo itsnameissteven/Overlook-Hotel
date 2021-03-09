@@ -6,6 +6,15 @@
   width:100%;
   justify-items: center;
 
+  &__info-container {
+    // border: $test-border;
+    padding-top: 1rem;
+    display: flex;
+    flex-wrap: wrap;
+    height: 15rem;
+    justify-content: space-around;
+  }
+
   &__header {
    width: 100%;
    grid-column: 1/-1;
@@ -35,8 +44,18 @@
   }
 }
 
-.info {
-  margin-right: 2rem;
+.info-left,
+.info-right {
+  width:50%
+}
+
+.info-right {
+  text-align: right;
+}
+
+.info-center {
+  width: 100%;
+  text-align: center;
 }
 
 .hotel-img-container {

@@ -41,6 +41,7 @@ const availableRoomsSection = document.getElementById('availableRooms');
 const bookedRooms = document.getElementById('bookedRooms');
 const searchForm = document.getElementById('searchForm');
 const userMessage = document.getElementById('userMessage');
+const loginButton = document.getElementById('loginBtn');
 
 let hotel;
 let customer;
@@ -51,7 +52,6 @@ const createHotel = () => {
 };
 
 const toggleHidden = (element, hidden = 'true') => element.setAttribute('aria-hidden', hidden);
-
 
 const createUser = (e) => {
   e.preventDefault();
@@ -156,11 +156,14 @@ const displaySearchResults = (e) => {
         <div class="hotel-img-container">
           <img src="./images/room-${result.number}.jpg" alt="Your next hotel room" class="available-rooms__card__img">
         </div>
-        <p class="info available-rooms__card__room-number">Room ${result.number}</p>
-        <p class="info available-rooms__card__room-type">${capitalizeWords(result.roomType)}</p>
-        <p class="info available-rooms__card__bed-size">Bed Size - ${capitalizeWords(result.bedSize)}</p>
-        <p class="info available-rooms__card__number-of-beds">Total Beds - ${result.numBeds}</p>
-        <p class="info available-rooms__card__has-bidet">${result.bidet ? "Complimentary Bidet!" : ""}</p>
+        <div class="available-rooms__info-container">
+          <p class="info-left available-rooms__card__room-number">Room ${result.number}</p>
+          <p class="info-right available-rooms__card__bed-size">Bed Size - ${capitalizeWords(result.bedSize)}</p>
+          <p class="info-left available-rooms__card__room-type">${capitalizeWords(result.roomType)}</p>
+          <p class="info-right available-rooms__card__number-of-beds">Total Beds - ${result.numBeds}</p>
+          <p class="info-center available-rooms__card__has-bidet">${result.bidet ? "Complimentary Bidet!" : ""}</p>
+          <p class="info-center available-rooms__card__cost-per-night">$${result.costPerNight} / Per Night</p>
+        </div>
         <button class="available-rooms__card__book-btn book-now btn">Book Now</button>
       </section>`
     });
@@ -232,27 +235,27 @@ const cancelReservation = (e) => {
     const id = e.target.parentElement.dataset.bookingID;
     data.cancelBooking(id)
       .then(data.handleErrors)
-      .then(updateBookings)
+      .then(() => {
+        updateBookings();
+        displayUserMessage(`Your reservation has been canceled.`);
+      })
       .catch(err => alert(err));
   }
 }
-
 
 const findUserID = (userName) => userName.replace("overlook", "");
 
 const showMain = () => {
   const mainElements = document.querySelectorAll('.main-page');
-  const loginPage = document.getElementById('loginPage')
-  toggleHidden(loginPage)
+  const loginPage = document.getElementById('loginPage');
+  toggleHidden(loginPage);
   mainElements.forEach(element => toggleHidden(element, 'false'));
 }
-
 
 const showLoginError = () => {
   const errorMessage = document.getElementById('errorMessage')
   toggleHidden(errorMessage, 'false')
 }
-
 
 const handleSearchEvents = (e) => {
   hideSearchDropDowns();
@@ -262,12 +265,9 @@ const handleSearchEvents = (e) => {
   }
 }
 
-
-
-
 const closeSearchBar = (e) => { 
   if(e.target.className.includes('exit-btn')) {
-    hideErrorMessage();
+    toggleHidden(userMessage);
   }
   if (!e.target.closest('.search-bar')) {
     hideSearchDropDowns() ;
@@ -279,10 +279,8 @@ const hideSearchDropDowns = () => {
   menus.forEach(element => toggleHidden(element));
 }
 
-const hideErrorMessage = () => toggleHidden(userMessage);
-
 const hideOnScroll = () => {
-  hideErrorMessage();
+  toggleHidden(userMessage);
   hideSearchDropDowns();
 }
 
@@ -294,8 +292,8 @@ const tabThroughSearch = (e) => {
   }
 }
 
-document.getElementById('loginBtn').addEventListener('click', createUser)
 window.onload = createHotel();
+loginButton.addEventListener('click', createUser);
 window.addEventListener('click', closeSearchBar);
 window.addEventListener('scroll', hideOnScroll);
 searchButton.addEventListener('click', displaySearchResults);

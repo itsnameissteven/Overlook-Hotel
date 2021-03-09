@@ -6,7 +6,6 @@
   left: 50%;
   transform: translate(-50%);
   height: 7rem;
-  
   width:80%;
   max-width: 95rem;
   min-width: 75rem;
@@ -14,6 +13,7 @@
   border-radius: 5rem;
   z-index:10;
   box-shadow: $main-drop-shadow;
+  // overflow: hidden;
 
   &__input{
     position: relative;
@@ -22,14 +22,14 @@
     height: 100%;
     border-radius: 100px;
     border: none;
-    overflow: hidden;
+    // overflow: hidden;
     
     &:hover {
       background-color: rgba(194, 194, 194, 0.507);
     }
     &:focus {
+      box-shadow: 0 0 15px 1px rgba(0, 0, 0, 0.36);
       outline: none;
-      box-shadow: 0 0 20px 2px rgba(0, 0, 0, 0.36);
       background-color: white;
     }
 

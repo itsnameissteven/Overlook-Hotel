@@ -17,7 +17,7 @@
     <form class="search-bar main-page" id="searchForm" aria-hidden="true">
       <input type="date" class="search-bar__input date" id="dateInput" value="" required>
       <label for="dateInput" class="date-label">date</label>
-      <div class="search-bar__input clickable" tabindex="0">
+      <div class="search-bar__input clickable" tabindex="0" aria-role="button">
         <h3 class="search-bar__input__header">
           <span class="search-bar__input__header--main">Room Type</span>
           <span class="search-bar__input__header--sub">Pick a Room Preference</span>
@@ -34,7 +34,7 @@
           <label for="resdentialSuite">Residential Suite</label>
         </div>
       </div>
-      <div class="search-bar__input clickable" tabindex="0">
+      <div class="search-bar__input clickable" tabindex="0" aria-role="button">
         <h3 class="search-bar__input__header">
           <span class="search-bar__input__header--main">Bed Size</span>
           <span class="search-bar__input__header--sub">Pick a bed size</span>
@@ -50,7 +50,7 @@
           <label for="king">King</label>
         </div>
       </div>
-      <div class="search-bar__input clickable" tabindex="0">
+      <div class="search-bar__input clickable" tabindex="0" aria-role="button">
         <h3 class="search-bar__input__header">
           <span class="search-bar__input__header--main">Beds</span>
           <span class="search-bar__input__header--sub">Beds per room</span>
@@ -83,7 +83,7 @@
           <label for="passwordInput">
             <input type="password" class="login-form__input" name="password" placeholder="Password" id="passwordInput" required>
           </label>
-          <input type="submit" placeholder="Login" class="login-form__input login-page__form__btn btn" id="loginBtn">
+          <input type="Submit" placeholder="Login" class="login-form__input login-page__form__btn btn" id="loginBtn" value="Log In">
         </form>
         <h2 class="login-error-msg" id="errorMessage" aria-hidden="true">Wrong username or password<br>please try again</h2>
       </div>    
