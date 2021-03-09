@@ -65,7 +65,7 @@ const createUser = (e) => {
     })
 };
 
-const login = (e) => {
+const login = () => {
   const password = document.getElementById('passwordInput').value;
   if (password !== 'overlook2021') {
     showLoginError();
@@ -104,9 +104,11 @@ const displayRooms = () => {
 
 const displayPointsEarned = () => {
   const pointsEarned = document.getElementById('pointsEarned');
+  const customerName = document.getElementById('customerName')
   pointsEarned.innerText = 
     `You've earned ${customer.returnPointsEarned(hotel)} points
     Total spent ${customer.returnTotalBookingCost(hotel)}`;
+  customerName.innerText = `Welcome back ${customer.name.split(' ')[0]}!`
 }
 
 const compileFormData = (elements) => {

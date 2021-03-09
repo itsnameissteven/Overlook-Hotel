@@ -32,8 +32,12 @@
   text-align: right;
   margin-top: 8rem;
 
+  &__name {
+     margin-bottom: 1rem;
+  }
+
   &__header {
-    margin-bottom: 2rem;
+    margin-bottom: 1.5rem;
   }
 
   &__img {
