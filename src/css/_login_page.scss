@@ -2,12 +2,15 @@
   display: inline-block;
   height:85vh;
   width: 36%;
+  max-width: 48rem;
   overflow: hidden;
   border: 1px solid $subtle-tones;
 
   &__hero-img {
-    width:100%;
-    min-width: 40rem;
+    height:100%;
+    // width: 110%;
+    // min-height: ;
+    // min-width: 40rem;
   }
 }
 

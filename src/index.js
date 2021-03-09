@@ -160,6 +160,7 @@ const displaySearchResults = (e) => {
       </section>`
     });
     document.location.href = '#availableRooms' ;
+    searchForm.reset()
     return; 
   }
   bookingErrorMessage.setAttribute('aria-hidden', 'false');
