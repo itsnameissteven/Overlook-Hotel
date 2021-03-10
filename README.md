@@ -3,6 +3,13 @@
 ## Contributers
 * [Steven Mancine](https://github.com/itsnameissteven)
 
+## Deployed Site 
+
+[Overlook Hotel](https://itsnameissteven.github.io/Overlook-Hotel/)
+uersname: overlook(a number 1 - 50)
+password: overlook2021
+
+
 ## Table of Contents 
 
 - [About the Project](#about-the-project)
