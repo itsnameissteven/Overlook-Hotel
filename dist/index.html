@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;400;700&family=Shrikhand&display=swap"
+      rel="stylesheet">
+    <title>Overlook Hotel</title>
+  </head>
+  <body>
+    <div class="user-msg" id="userMessage" aria-hidden="true">
+      <button class="exit-btn btn" aria-label="Exit" tabindex="0"></button>
+      <h2 class="user-msg__header" id="message"></h2>
+    </div>
+    <form class="search-bar main-page" id="searchForm" aria-hidden="true">
+      <input type="date" class="search-bar__input date" id="dateInput" value="" required>
+      <label for="dateInput" class="date-label">date</label>
+      <div class="search-bar__input clickable" tabindex="0" aria-role="button">
+        <h3 class="search-bar__input__header">
+          <span class="search-bar__input__header--main">Room Type</span>
+          <span class="search-bar__input__header--sub">Pick a Room Preference</span>
+        </h3>
+        <div class="drop-down-menu"  aria-hidden="true">
+          <input type="checkbox"  class="search-bar__input--room room-type" name ="single room" value="single room" id="singleRoom">
+          <label for="singleRoom">Single Room</label><br>
+          <input type="checkbox" class="search-bar__input--room room-type" name="suite" value="suite" id="suite">
+          <label for="suite">Suite</label><br>
+          <input type="checkbox" class="search-bar__input--room room-type" name="junior suite"
+          value="junior suite" id="juniorSuite">
+          <label for="juniorSuite">Junior Suite</label><br>
+          <input type="checkbox" class="search-bar__input--room room-type" name="residential suite" value ="residential suite" id="resdentialSuite">
+          <label for="resdentialSuite">Residential Suite</label>
+        </div>
+      </div>
+      <div class="search-bar__input clickable" tabindex="0" aria-role="button">
+        <h3 class="search-bar__input__header">
+          <span class="search-bar__input__header--main">Bed Size</span>
+          <span class="search-bar__input__header--sub">Pick a bed size</span>
+        </h3>
+        <div class="drop-down-menu input" aria-hidden="true">
+          <input type="checkbox" class="search-bar__input--room bed-size" name="twin" value="twin" id="twin">
+          <label for="twin">Twin</label><br>
+          <input type="checkbox" class="search-bar__input--room bed-size" name="full" value="full" id="full">
+          <label for="full">Full</label><br>
+          <input type="checkbox" class="search-bar__input--room bed-size" name="queen" value="queen" id="queen">
+          <label for="queen">Queen</label><br>
+          <input type="checkbox" class="search-bar__input--room bed-size" name="king" value="king" id="king">
+          <label for="king">King</label>
+        </div>
+      </div>
+      <div class="search-bar__input clickable" tabindex="0" aria-role="button">
+        <h3 class="search-bar__input__header">
+          <span class="search-bar__input__header--main">Beds</span>
+          <span class="search-bar__input__header--sub">Beds per room</span>
+        </h3>
+        <div class="drop-down-menu input" aria-hidden="true">
+          <input type="checkbox" class="search-bar__input--room number-of-beds" name="1" value="1" id="one">
+          <label for="one">1 Bed</label><br>
+          <input type="checkbox" class="search-bar__input--room number-of-beds" name="2" value="2" id="two">
+          <label for="two">2 Beds</label><br>
+        </div>
+      </div>
+      <button class="search-bar__btn btn" id="searchBtn" aria-label="search" tabindex="0"></button>
+    </form>
+    <header class="header main-page" aria-hidden="true">
+      <h1 class="header__title">
+        <span class="header__title--main">Overlook</span>
+        <span class="header__title--sub">Discover comfort</span>
+      </h1>
+    </header>
+    <section class="login-page" id="loginPage">
+      <div class="login-page__img">
+        <img src="./images/login-hotel.jpg" alt="Vintage hotel sign" class="login-page__img__hero-img">
+      </div>
+      <div class="login-page__form-container">
+        <h1 class="login-page__header">Welcome Back!<br>Please Login</h1>
+        <form class="login-page__form" id="loginForm">
+          <label for="usernameNameInput">
+            <input type="text" class="login-form__input" name="userName" placeholder="Username" id="userNameInput" required>
+          </label>
+          <label for="passwordInput">
+            <input type="password" class="login-form__input" name="password" placeholder="Password" id="passwordInput" required>
+          </label>
+          <input type="Submit" placeholder="Login" class="login-form__input login-page__form__btn btn" id="loginBtn" value="Log In">
+        </form>
+        <h2 class="login-error-msg" id="errorMessage" aria-hidden="true">Wrong username or password<br>please try again</h2>
+      </div>    
+    </section>
+    <main class="main main-page" aria-hidden="true">
+      <div class="hotel-points" tabindex="0">
+        <div class="points-container">
+          <h2 class="hotel-points__name" id="customerName"></h2>
+          <h2 class="hotel-points__header">Your Points</h2>
+          <p class="hotel-points__points-earned" id="pointsEarned"></p>
+        </div>
+        <p class="hotel-points__tag-line">
+          Earn 1 point for every ten dollars spent.<br>Book now to continue earning.
+        </p>
+        <img src="./images/joshua-tree.jpg" alt="The joshua tree landscape" class="hotel-points__img">
+      </div>
+      <div class="available-rooms" id="availableRooms"></div>
+      <div class="booked-rooms">
+        <h1 class="booked-room__header">
+          Your Bookings
+        </h1>
+        <div class="booked-room__container" id="bookedRooms"></div>
+        <div class="booked-room__img__container">
+          <img src="./images/sunset.jpg" alt="A joshua tree in the sunset" class="booked-room__img">
+        </div>     
+      </div>
+    </main>
+  <script src="main.bundle.js"></script></body>
+</html>
