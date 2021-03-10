@@ -144,7 +144,8 @@ const displaySearchResults = (e) => {
   const results = hotel.returnAllFilteredResults(data.date, 
     data.roomType, data.bedSize, data.numBeds);
   const header = results.length === 0 ? 
-    `Sorry no rooms match your search criteria for ${fixDate(data.date)}. Please try again.` : `Rooms available on ${fixDate(data.date)}`
+    `Sorry no rooms match your search criteria for ${fixDate(data.date)}. Please try again.` 
+      : `Rooms available on ${fixDate(data.date)}`
   if(results) {
     const availableRooms = document.getElementById('availableRooms');
     availableRooms.innerHTML = "";
