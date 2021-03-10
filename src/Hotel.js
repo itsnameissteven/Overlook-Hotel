@@ -20,7 +20,6 @@ class Hotel {
     if (searchInput.length === 0) {
       return availableRooms;
     }
-    // const searchParameters = searchInput.split('-');
     const results = searchInput.reduce((foundRooms, keyword) => {
       availableRooms.forEach(room => {
         if (room[type].toString() === keyword && !foundRooms.includes(room)) {

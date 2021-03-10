@@ -57,7 +57,7 @@ const createUser = (e) => {
   e.preventDefault();
   const userName = document.getElementById('userNameInput').value;
   Promise.resolve(data.getUserData(parseInt(findUserID(userName)), () => showLoginError()))
-  .then(value => {
+    .then(value => {
       customer = new Customer(value);
       login();
       displayRooms();
@@ -75,7 +75,7 @@ const login = () => {
 }
 
 const disableButton = (date) => {
-  if(new Date(date) < new Date()) {
+  if (new Date(date) < new Date()) {
     return 'disabled';
   }
   return;
@@ -87,7 +87,7 @@ const displayRooms = () => {
   customer.organizeBookingsByDate(hotel).forEach(room => {
     const section = document.createElement('section');
     section.className = 'booked-room__card';
-    section.tabIndex ="0"
+    section.tabIndex = "0"
     section.dataset.bookingID = room.bookingID;
     section.innerHTML = 
       `<img src="./images/room-${room.number}.jpg" alt="Hotel room with a bed and desk" class="booked-room__card__img">
@@ -119,13 +119,13 @@ const compileFormData = (elements) => {
     numBeds: []
   };
   elements.forEach(element => {
-    if(element.className.includes('room-type') && element.checked) {
+    if (element.className.includes('room-type') && element.checked) {
       data.roomType.push(element.value);
     }
-    if(element.className.includes('bed-size') && element.checked) {
+    if (element.className.includes('bed-size') && element.checked) {
       data.bedSize.push(element.value);
     }
-    if(element.className.includes('number-of-beds') && element.checked) {
+    if (element.className.includes('number-of-beds') && element.checked) {
       data.numBeds.push(element.value);
     }
   });
@@ -144,8 +144,9 @@ const displaySearchResults = (e) => {
   const results = hotel.returnAllFilteredResults(data.date, 
     data.roomType, data.bedSize, data.numBeds);
   const header = results.length === 0 ? 
-    `Sorry no rooms match your search criteria for ${fixDate(data.date)}. Please try again.` : `Rooms available on ${fixDate(data.date)}`
-  if(results) {
+    `Sorry no rooms match your search criteria for ${fixDate(data.date)}. Please try again.` 
+    : `Rooms available on ${fixDate(data.date)}`
+  if (results) {
     const availableRooms = document.getElementById('availableRooms');
     availableRooms.innerHTML = "";
     availableRooms.innerHTML =
@@ -182,10 +183,10 @@ const displayUserMessage = (content) => {
 
 
 let fixDate = (date) => {
-    const splitDate = date.split('/');
-    splitDate.push(splitDate.shift())
-    const joined = splitDate.join('/')
-    return joined
+  const splitDate = date.split('/');
+  splitDate.push(splitDate.shift());
+  const joined = splitDate.join('/');
+  return joined;
 }
 
 const capitalizeWords = (string) => {
@@ -204,15 +205,15 @@ const storeBookingData = (date, data) => {
 }
 
 const makeReservation = (e) => {
-  if(e.target.className.includes('btn')) {
+  if (e.target.className.includes('btn')) {
     data.bookRoom(JSON.parse(e.target.dataset.bookingData))
       .then(data.handleErrors)
       .then(data => {
-          hotel.bookings.push(data.newBooking)
-          displayRooms();
-          displayPointsEarned();
-          displayUserMessage(`Booking for ${fixDate(data.newBooking.date)} complete.
-          Confirmation number - ${data.newBooking.id}`)
+        hotel.bookings.push(data.newBooking)
+        displayRooms();
+        displayPointsEarned();
+        displayUserMessage(`Booking for ${fixDate(data.newBooking.date)} complete.
+        Confirmation number - ${data.newBooking.id}`)
       })
       .catch(err => alert(err));
     e.target.parentElement.remove();
@@ -230,7 +231,7 @@ const updateBookings = () => {
 
 
 const cancelReservation = (e) => {
-  if(e.target.className.includes('btn')) {
+  if (e.target.className.includes('btn')) {
     const id = e.target.parentElement.dataset.bookingID;
     data.cancelBooking(id)
       .then(data.handleErrors)
@@ -252,24 +253,24 @@ const showMain = () => {
 }
 
 const showLoginError = () => {
-  const errorMessage = document.getElementById('errorMessage')
-  toggleHidden(errorMessage, 'false')
+  const errorMessage = document.getElementById('errorMessage');
+  toggleHidden(errorMessage, 'false');
 }
 
 const handleSearchEvents = (e) => {
   hideSearchDropDowns();
-  if (!!e.target.closest('.clickable')) {
+  if (e.target.closest('.clickable')) {
     const target = e.target.closest('.clickable').childNodes[3];
     toggleHidden(target, 'false');
   }
 }
 
 const closeSearchBar = (e) => { 
-  if(e.target.className.includes('exit-btn')) {
+  if (e.target.className.includes('exit-btn')) {
     toggleHidden(userMessage);
   }
   if (!e.target.closest('.search-bar')) {
-    hideSearchDropDowns() ;
+    hideSearchDropDowns();
   }
 }
 
@@ -286,8 +287,8 @@ const hideOnScroll = () => {
 const tabThroughSearch = (e) => {
   if (e.keyCode === 13) {
     hideSearchDropDowns();
-    const target = e.target.closest('.clickable').childNodes[3]
-    toggleHidden(target, 'false')
+    const target = e.target.closest('.clickable').childNodes[3];
+    toggleHidden(target, 'false');
   }
 }
 

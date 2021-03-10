@@ -1,6 +1,6 @@
 const data = {
   getData(type) {
-    return fetch(`http://localhost:3001/api/v1/${type}`)
+    return fetch(`https://overlook-hotel.herokuapp.com/api/v1/${type}`)
       .then(data.handleErrors)
       .then(data => data[type])
       .catch(err => alert(err));
@@ -10,13 +10,13 @@ const data = {
     return dataTypes.map(this.getData);
   },
   getUserData(customerID, callback) {
-    return fetch(`http://localhost:3001/api/v1/customers/${customerID}`)
+    return fetch(`https://overlook-hotel.herokuapp.com/api/v1/customers/${customerID}`)
       .then(data.handleErrors)
       .then(data => data)
       .catch(callback)
   },
   bookRoom(room) {
-    return fetch('http://localhost:3001/api/v1/bookings', {
+    return fetch('https://overlook-hotel.herokuapp.com/api/v1/bookings', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'
@@ -25,7 +25,7 @@ const data = {
     })
   },
   cancelBooking(id) {
-    return fetch('http://localhost:3001/api/v1/bookings/' + id, {
+    return fetch('https://overlook-hotel.herokuapp.com/api/v1/bookings/' + id, {
       method: 'DELETE',
     })
   },

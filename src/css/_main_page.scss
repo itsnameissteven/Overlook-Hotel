@@ -8,7 +8,6 @@
   background-position:bottom;
   clip-path: polygon(0 0, 100% 0, 100% 80%, 0 100%);
 
-  
   &__title {
     backface-visibility: hidden;
     @include center(50%, 50%);
@@ -70,10 +69,6 @@
   z-index:5;
   border-radius: 50% 20% 50% 40%
 }
-
-// .hidden {
-//   display: none;
-// }
 
 [aria-hidden="true"] {
   display: none;

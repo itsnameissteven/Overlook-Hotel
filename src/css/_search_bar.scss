@@ -13,7 +13,6 @@
   border-radius: 5rem;
   z-index:10;
   box-shadow: $main-drop-shadow;
-  // overflow: hidden;
 
   &__input{
     position: relative;
@@ -22,7 +21,6 @@
     height: 100%;
     border-radius: 100px;
     border: none;
-    // overflow: hidden;
     
     &:hover {
       background-color: rgba(194, 194, 194, 0.507);
@@ -70,7 +68,6 @@
   animation: dropDown 400ms ease-out;
   transform-origin: top;
 }
-
 
 label{
   width:fit-content;
